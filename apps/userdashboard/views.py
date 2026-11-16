@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator
@@ -6,6 +8,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
+from django_ckeditor_5.widgets import CKEditor5Widget
 from guest_user.mixins import RegularUserRequiredMixin
 
 from adhocracy4.actions.models import Action
@@ -350,6 +353,9 @@ class UserDashboardModerationDetailView(
             "moderationitems-list", kwargs={"project_pk": self.project.pk}
         )
         context["back_url"] = reverse("userdashboard-moderation")
+        editor_widget = CKEditor5Widget(config_name="default")
+        context["ckeditor_media"] = editor_widget.media
+        context["ckeditor_config"] = json.dumps(editor_widget.config)
         return context
 
     def dispatch(self, request, *args, **kwargs):

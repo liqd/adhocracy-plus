@@ -4,6 +4,23 @@ from adhocracy4.comments.models import Comment
 from adhocracy4.comments_async import serializers as a4_serializers
 from apps.contrib.dates import get_date_display
 from apps.moderatorfeedback.models import ModeratorCommentFeedback
+from apps.moderatorfeedback.models import ModeratorFeedback
+
+
+class ModeratorFeedbackSerializer(serializers.ModelSerializer):
+    last_edit = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ModeratorFeedback
+        fields = ["last_edit", "pk", "feedback_text"]
+        read_only_fields = ["last_edit", "pk"]
+
+    def get_last_edit(self, feedback):
+        if feedback is None:
+            return None
+        if feedback.modified:
+            return get_date_display(feedback.modified)
+        return get_date_display(feedback.created)
 
 
 class ModeratorCommentFeedbackSerializer(serializers.ModelSerializer):

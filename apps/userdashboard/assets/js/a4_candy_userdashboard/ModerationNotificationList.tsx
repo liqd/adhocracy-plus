@@ -31,6 +31,7 @@ interface ModerationNotificationListProps {
   projectTitle: string
   organisation: string
   projectUrl: string
+  ckeditorConfig?: string
 }
 
 interface ModerationNotificationListState {
@@ -164,7 +165,7 @@ export default class ModerationNotificationList extends Component<ModerationNoti
 
   render () {
     const { isLoaded } = this.state
-    const { projectTitle, organisation, projectUrl } = this.props
+    const { projectTitle, organisation, projectUrl, ckeditorConfig } = this.props
     const byText = django.gettext('By ')
     const loadmoreText = django.gettext('Load more')
     const gotoTopText = django.gettext('Go to top')
@@ -230,13 +231,14 @@ export default class ModerationNotificationList extends Component<ModerationNoti
               <div>
                 <h3 id="list-header" className="visually-hidden">{listText}</h3>
                 <ul className="u-list-reset">
-                  {this.state.moderationItems.map((item, i) => (
+                  {this.state.moderationItems.map((item) => (
                     <ModerationNotification
-                      key={i}
+                      key={item.item_type + '-' + item.pk}
                       notification={item}
                       apiUrl={item.api_url}
                       getUrlParams={() => this.getUrlParams()}
                       loadData={() => this.loadData()}
+                      ckeditorConfig={ckeditorConfig}
                     />
                   ))}
                 </ul>

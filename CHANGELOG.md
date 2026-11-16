@@ -8,6 +8,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ## Unreleased
 
 ### Added
+
+- Moderation dashboard: ideas show their formatted text, images and inline official feedback
+
 ### Changed
 ### Fixed
 

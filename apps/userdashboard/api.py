@@ -1,3 +1,4 @@
+from django.db import transaction
 from django.db.models import CharField
 from django.db.models import Count
 from django.db.models import ExpressionWrapper
@@ -10,6 +11,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins
 from rest_framework import viewsets
 from rest_framework.decorators import action
+from rest_framework.fields import ChoiceField
+from rest_framework.fields import empty
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
@@ -241,9 +244,10 @@ class ModerationItemViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
 class ModerationIdeaViewSet(
     mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
     viewsets.GenericViewSet,
 ):
-    """Handles the read state of ideas in the moderation dashboard."""
+    """Handles the read state and feedback of ideas in the moderation dashboard."""
 
     model = Idea
     serializer_class = serializers.ModerationIdeaSerializer
@@ -279,11 +283,83 @@ class ModerationIdeaViewSet(
         idea.save(ignore_modified=True)
         return Response(data={"is_unread": True}, status=200)
 
+    @action(
+        detail=True,
+        methods=["get", "post", "put", "patch", "delete"],
+        url_path="feedback",
+    )
+    def feedback(self, request, **kwargs):
+        idea = self.get_object()
+        feedback = idea.moderator_feedback_text
+
+        if request.method == "GET":
+            if feedback is None:
+                return Response(None)
+            return Response(serializers.ModeratorFeedbackSerializer(feedback).data)
+
+        moderator_status = empty
+        if "moderator_status" in request.data:
+            moderator_status = ChoiceField(
+                choices=idea.moderator_status_choices, allow_null=True
+            ).run_validation(request.data["moderator_status"])
+
+        if request.method == "POST":
+            with transaction.atomic():
+                if feedback is None:
+                    serializer = serializers.ModeratorFeedbackSerializer(
+                        data=request.data
+                    )
+                    serializer.is_valid(raise_exception=True)
+                    feedback = serializer.save(creator=request.user)
+                    idea.moderator_feedback_text = feedback
+                    status_code = 201
+                else:
+                    serializer = serializers.ModeratorFeedbackSerializer(
+                        feedback, data=request.data, partial=True
+                    )
+                    serializer.is_valid(raise_exception=True)
+                    serializer.save()
+                    status_code = 200
+
+                if moderator_status is not empty:
+                    idea.moderator_status = moderator_status
+                idea.is_reviewed = True
+                idea.save(ignore_modified=True)
+            return Response(serializer.data, status=status_code)
+
+        if feedback is None:
+            return Response(status=404)
+
+        if request.method in ("PUT", "PATCH"):
+            with transaction.atomic():
+                serializer = serializers.ModeratorFeedbackSerializer(
+                    feedback,
+                    data=request.data,
+                    partial=request.method == "PATCH",
+                )
+                serializer.is_valid(raise_exception=True)
+                serializer.save()
+                if moderator_status is not empty:
+                    idea.moderator_status = moderator_status
+                idea.is_reviewed = True
+                idea.save(ignore_modified=True)
+            return Response(serializer.data)
+
+        with transaction.atomic():
+            idea.moderator_feedback_text = None
+            idea.save(ignore_modified=True)
+            feedback.delete()
+        return Response(status=204)
+
     @property
     def rules_method_map(self):
         return ViewSetRulesPermission.default_rules_method_map._replace(
             GET="a4_candy_userdashboard.view_moderation_comment",
             OPTIONS="a4_candy_userdashboard.view_moderation_comment",
+            POST="a4_candy_userdashboard.change_moderation_comment",
+            PUT="a4_candy_userdashboard.change_moderation_comment",
+            PATCH="a4_candy_userdashboard.change_moderation_comment",
+            DELETE="a4_candy_userdashboard.change_moderation_comment",
         )
 
 

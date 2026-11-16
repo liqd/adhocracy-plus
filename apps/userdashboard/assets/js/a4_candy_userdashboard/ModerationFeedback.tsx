@@ -71,7 +71,10 @@ export const ModerationFeedback = ({ feedback, onDelete, onEdit }: ModerationFee
       </div>
       <div className="row">
         <div className="col-12">
-          <span className="userdashboard-mod-feedback__text">{feedbackText}</span>
+          <div
+            className="userdashboard-mod-feedback__text ck-content"
+            dangerouslySetInnerHTML={{ __html: feedbackText }}
+          />
         </div>
       </div>
     </div>
