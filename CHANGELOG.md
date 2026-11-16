@@ -8,9 +8,19 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ## Unreleased
 
 ### Added
+
+- Learning Nuggets: ported the Learning Center with category nuggets, help sidebar and video block
+- Learning Nuggets: live search in the help sidebar
+
 ### Changed
+
 - Comment section: compact layout with connected replies
+- Header: help button opens the Learning Center sidebar; the header is sticky and hides when scrolling down
+
 ### Fixed
+
+- Learning Nuggets: draft and private nuggets are no longer served or listed
+- Learning Nuggets: the help sidebar keeps keyboard focus inside the dialog
 
 
 ## v2611.4
@@ -43,8 +53,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
-- Learning Nuggets: ported the Learning Center app with category-based nuggets (Wagtail pages and snippets), an htmx-powered help sidebar reachable from the header on every page, and a Wagtail Video Block (video/audio plus transcript). Adds `django-htmx`.
-- Learning Nuggets: live search in the help sidebar. Matches page titles, nugget titles and descriptions (case-insensitive, partial words), lists deduplicated page titles and announces result changes to screen readers.
 - polls: Django admin to list, search, edit and delete free-text poll answers
 - audit: admin audit log records now as an extra view
 - Tests: e2e coverage for the React/vanilla JS widgets: poll multi-question funnel and review step, moderation actions (block, highlight, feedback), interactive events present screen, organisation project search, project follow, and document chapter editing; the suite standardizes on Playwright's `expect()` assertions
@@ -133,7 +141,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Ideas, MapIdeas List: New design
 - Comment box: Minimum height 100px
 - Idea, spatial idea and participatory budgeting module pages: the submit call to action is now a sticky banner that stays at the top of the viewport while scrolling
-- Header: the question-mark help button moved into the header and opens the Learning Center sidebar as an overlay (no page navigation); the sidebar closes via close icon, backdrop click or Esc. The header is sticky and hides when scrolling down, reappears on scroll up, and the button has an accessible label. The compact "a+" logo is shown on mobile instead of the full wordmark, and the help/notification buttons are 48px with the burger vertically centered
 
 ### Fixed
 
@@ -162,7 +169,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   uploads are scaled/cropped to the 1500x500 target resolution and re-encoded
   (JPEG) in the browser, which avoids "413 Request Entity Too Large" errors from
   proxy body-size limits
-- Learning Nuggets: only live, non-private nuggets are served and listed (draft/private pages no longer leak); the ``?sidebar=`` overlay only loads same-origin Learning Center paths (protocol-relative URLs are rejected); the index heading now uses the Learning Center page title; legacy ``permission_level`` values are normalised so categories are no longer dropped from the index; video/audio MIME detection is based on ``mimetypes`` with a safe fallback (``.webm``/``.ogg`` handled correctly) and the video title is rendered; opening the help sidebar moves keyboard focus into the dialog and traps it there (focus returns to the trigger on close)
 - Profile editing no longer silently clears the newsletter opt-in
   (``User.get_newsletters``). The newsletter toggle on the notification
   settings page now controls this actual opt-in.
