@@ -8,7 +8,7 @@
     <p class="step-wizard__status" data-step-wizard-status aria-live="polite" data-label="{% translate 'Step %(current)s of %(total)s' %}"></p>
     {% endif %}
 
-    {% if wizard %}<fieldset class="step-wizard__step" data-step-wizard-step="1"><legend class="step-wizard__title">{% translate "Set a location for your idea" %}</legend><p class="step-wizard__hint">{% translate "You can click anywhere on the map to place your idea. For fine-tuning, use the arrow keys." %}</p>{% endif %}
+    {% if wizard %}<fieldset class="step-wizard__step" data-step-wizard-step="1"><legend class="step-wizard__title">{% translate "Set a location for your idea" %}</legend>{% endif %}
 
     {% include 'a4_candy_contrib/includes/form_field.html' with field=form.point %}
 
