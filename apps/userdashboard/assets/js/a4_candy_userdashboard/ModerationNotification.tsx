@@ -581,6 +581,9 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
             <span>{translated.hiddenFromDiscussion} · {created}</span>
           </div>}
 
+        {!notification.is_blocked && notification.moderator_feedback && !showFeedbackForm &&
+          <ModerationFeedback feedback={notification.moderator_feedback} />}
+
         <ModerationNotificationActionsBar
           itemPk={notification.pk}
           itemType={notification.item_type}
@@ -595,8 +598,6 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
           onMarkResolved={() => markResolved()}
           onReopen={() => toggleIsBlocked()}
         />
-        {!notification.is_blocked && notification.moderator_feedback && !showFeedbackForm &&
-          <ModerationFeedback feedback={notification.moderator_feedback} />}
         {showFeedbackForm &&
           <ModerationFeedbackEditorForm
             key={notification.moderator_feedback?.pk || 'new'}

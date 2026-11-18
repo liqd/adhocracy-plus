@@ -64,16 +64,28 @@ $moderation-border-color: #ddd;
 }
 
 .userdashboard-mod-feedback {
-    margin: $spacer 0;
-    padding: $spacer;
+    display: flex;
+    align-items: flex-start;
+    gap: (1.25 * $spacer);
+    margin: (1.5 * $spacer) 0;
+}
+
+.userdashboard-mod-feedback__icon {
+    flex-shrink: 0;
+    padding-top: 2px;
+}
+
+.userdashboard-mod-feedback__body {
+    flex: 1;
+    padding: (1.5 * $spacer);
     background-color: $bg-light;
-    border-radius: 5px;
 }
 
 .userdashboard-mod-feedback__header {
     font-weight: $demi-bold;
     display: flex;
     align-items: center;
+    font-size: $font-size-md;
 }
 
 .userdashboard-mod-feedback__date {
@@ -83,6 +95,7 @@ $moderation-border-color: #ddd;
 
 .userdashboard-mod-feedback__text {
     overflow-wrap: anywhere;
+    font-size: $font-size-sm;
 }
 
 .userdashboard-mod-item__label {
