@@ -7,7 +7,8 @@ import QuestionImage from 'adhocracy4/adhocracy4/polls/static/PollDetail/Questio
 import type { PollQuestion } from '../types'
 
 const translated = {
-  multiple: django.gettext('Multiple answers are possible.')
+  multiple: django.gettext('Multiple answers are possible.'),
+  mandatory: django.gettext('Mandatory question')
 }
 
 interface PollChoiceProps {
@@ -23,6 +24,8 @@ export const PollChoice = ({ question, allowUnregisteredUsers, onAnswerChange, e
 
   const otherChoice = question.choices.find(c => c.is_other_choice)
   const canVote = (question.authenticated || allowUnregisteredUsers) && !question.isReadOnly
+  const errorRecord = (errors ?? {}) as Record<string, unknown>
+  const errorId = errorRecord[question.id] ? `id_error-${question.id}` : undefined
 
   const handleChoiceChange = (choiceId: number) => {
     if (question.multiple_choice) {
@@ -52,7 +55,15 @@ export const PollChoice = ({ question, allowUnregisteredUsers, onAnswerChange, e
     <div className="poll poll--question">
       <fieldset>
         <legend className="poll__question-legend">
-          <span className="poll__question-label">{question.label}</span>
+          <span className="poll__question-label">
+            {question.label}
+            {question.is_mandatory && (
+              <span className="poll__question-required" aria-hidden="true">*</span>
+            )}
+          </span>
+          {question.is_mandatory && (
+            <span className="visually-hidden">{translated.mandatory}</span>
+          )}
         </legend>
 
         {question.image_url && <QuestionImage imageUrl={question.image_url} alt={question.image_alt_text || question.label} />}
@@ -79,6 +90,8 @@ export const PollChoice = ({ question, allowUnregisteredUsers, onAnswerChange, e
               otherChoiceAnswer={otherChoiceAnswer}
               onOtherChange={handleOtherChange}
               errors={errors}
+              required={!!question.is_mandatory}
+              errorId={errorId}
               name={question.multiple_choice ? undefined : `question-${question.id}`}
             />
           ))}

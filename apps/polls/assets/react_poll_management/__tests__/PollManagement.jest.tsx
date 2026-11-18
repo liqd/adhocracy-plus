@@ -65,6 +65,7 @@ const choiceQuestion = {
   multiple_choice: false,
   is_open: false,
   is_confidential: false,
+  is_mandatory: false,
   choices: [
     { id: 10, label: 'A', is_other_choice: false },
     { id: 11, label: 'B', is_other_choice: false }
@@ -82,6 +83,7 @@ const openQuestion = {
   multiple_choice: false,
   is_open: true,
   is_confidential: false,
+  is_mandatory: false,
   choices: [],
   userChoices: [],
   answers: [],
@@ -145,6 +147,20 @@ describe('PollManagement', () => {
     fireEvent.change(screen.getByRole('textbox', { name: /Question/ }), { target: { value: 'Edited' } })
 
     expect(api.poll.change).not.toHaveBeenCalled()
+  })
+
+  it('saves the mandatory setting of a question', async () => {
+    const { container } = renderManagement()
+    fireEvent.click(await screen.findByText('First question'))
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Mandatory question' }))
+
+    // the collapsed row shows the mandatory indicator right away
+    expect(container.querySelector('.poll-management__flag')).toHaveTextContent('Mandatory')
+
+    fireEvent.click(screen.getByRole('button', { name: 'Save' }))
+    const [payload] = (api.poll.change as jest.Mock).mock.calls[0]
+    expect(payload.questions[0].is_mandatory).toBe(true)
+    expect(payload.questions[1].is_mandatory).toBe(false)
   })
 
   it('moves the question within the survey with the arrow controls', async () => {
@@ -229,6 +245,7 @@ describe('PollManagement', () => {
       multiple_choice: false,
       is_open: false,
       is_confidential: false,
+      is_mandatory: false,
       choices: [
         { id: 10, label: 'A', is_other_choice: false },
         { id: 11, label: 'B', is_other_choice: false }

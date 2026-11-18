@@ -129,4 +129,94 @@ describe('QuestionFunnel', () => {
     const container = screen.getByTestId('poll-open-question')
     expect(container).toBeInTheDocument()
   })
+
+  it('marks a mandatory question with an asterisk', () => {
+    const { container } = render(
+      <QuestionFunnel
+        {...baseProps}
+        currentQuestion={{ ...choiceQuestion, is_mandatory: true }}
+      />
+    )
+    expect(container.querySelector('.poll__question-required')).toHaveTextContent('*')
+  })
+
+  it('shows the error of the current question', () => {
+    const { container } = render(
+      <QuestionFunnel
+        {...baseProps}
+        currentQuestion={{ ...choiceQuestion, is_mandatory: true }}
+        errors={{ 1: ['Please answer this question to continue.'] }}
+      />
+    )
+    const error = screen.getByRole('alert')
+    expect(error).toHaveTextContent('Please answer this question to continue.')
+    expect(container.querySelector('.errorlist')).toBe(error)
+  })
+
+  it('links the error to the question fields', () => {
+    const { container } = render(
+      <QuestionFunnel
+        {...baseProps}
+        currentQuestion={{ ...choiceQuestion, is_mandatory: true }}
+        errors={{ 1: ['Please answer this question to continue.'] }}
+      />
+    )
+    const input = container.querySelector('input[type="radio"]') as HTMLInputElement
+    expect(input).toHaveAttribute('aria-invalid', 'true')
+    expect(input.getAttribute('aria-describedby')).toContain('id_error-1')
+  })
+
+  it('disables Next while a mandatory question is unanswered', () => {
+    render(
+      <QuestionFunnel
+        {...baseProps}
+        currentQuestion={{ ...choiceQuestion, is_mandatory: true }}
+        currentAnswer={null}
+      />
+    )
+    expect(screen.getByText('Next')).toBeDisabled()
+  })
+
+  it('enables Next once the mandatory question is answered', () => {
+    render(
+      <QuestionFunnel
+        {...baseProps}
+        currentQuestion={{ ...choiceQuestion, is_mandatory: true }}
+        currentAnswer={{ choices: [10] }}
+      />
+    )
+    expect(screen.getByText('Next')).toBeEnabled()
+  })
+
+  it('disables Submit All while the last mandatory question is unanswered', () => {
+    render(
+      <QuestionFunnel
+        {...baseProps}
+        currentQuestion={{ ...choiceQuestion, is_mandatory: true }}
+        currentNumber={3}
+        totalQuestions={3}
+        currentAnswer={null}
+      />
+    )
+    expect(screen.getByText('Submit All')).toBeDisabled()
+  })
+
+  it('enables Submit All once the last mandatory question is answered', () => {
+    render(
+      <QuestionFunnel
+        {...baseProps}
+        currentQuestion={{ ...choiceQuestion, is_mandatory: true }}
+        currentNumber={3}
+        totalQuestions={3}
+        currentAnswer={{ choices: [10] }}
+      />
+    )
+    expect(screen.getByText('Submit All')).toBeEnabled()
+  })
+
+  it('hides Skip for mandatory questions', () => {
+    render(<QuestionFunnel {...baseProps} currentQuestion={{ ...choiceQuestion, is_mandatory: true }} />)
+    expect(screen.queryByText('Skip')).not.toBeInTheDocument()
+    expect(screen.getByText('Next')).toBeInTheDocument()
+  })
 })

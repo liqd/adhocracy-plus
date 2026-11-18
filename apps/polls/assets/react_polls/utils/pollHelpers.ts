@@ -17,7 +17,20 @@ export const hasValidAnswer = (question: PollQuestion | undefined, answer: UserA
     }
   }
 
-  return hasChoice || hasOtherAnswer
+  return hasChoice
+}
+
+/**
+ * An answer object without any content means the participant cleared a
+ * previously saved answer. It counts as skipped rather than invalid.
+ */
+export const isEmptyAnswer = (answer: UserAnswer | undefined): boolean => {
+  if (!answer) return true
+  const hasChoices = Array.isArray(answer.choices) && answer.choices.length > 0
+  const hasOpenAnswer = typeof answer.open_answer === 'string' && answer.open_answer.trim() !== ''
+  const hasOtherAnswer = typeof answer.other_choice_answer === 'string' &&
+    answer.other_choice_answer.trim() !== ''
+  return !hasChoices && !hasOpenAnswer && !hasOtherAnswer
 }
 
 export const buildVoteData = (userAnswers: UserAnswers): Record<number, UserAnswer> => {
@@ -42,3 +55,14 @@ export const getAnsweredCount = (questions: PollQuestion[], userAnswers: UserAns
   })
   return count
 }
+
+/**
+ * Mandatory questions that still have no valid answer. Used to block the
+ * navigation and the submission of the poll.
+ */
+export const getUnansweredMandatoryQuestions = (
+  questions: PollQuestion[],
+  userAnswers: UserAnswers
+): PollQuestion[] => questions.filter(
+  question => !!question.is_mandatory && !hasValidAnswer(question, userAnswers[question.id])
+)
