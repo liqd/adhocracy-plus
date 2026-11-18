@@ -65,5 +65,11 @@ class ModeratorCommentFeedback(UserGeneratedContentModel):
     def project(self):
         return self.comment.project
 
+    def save(self, update_fields=None, *args, **kwargs):
+        self.feedback_text = transforms.clean_html_field(self.feedback_text)
+        if update_fields:
+            update_fields = {"feedback_text"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
+
     def __str__(self):
         return ("{} - {}").format(self.comment.id, self.feedback_text)

@@ -205,3 +205,22 @@ def test_adding_feedback_without_mark_resolved_keeps_comment_unread(
     assert response.status_code == 201
     comment.refresh_from_db()
     assert comment.is_reviewed is False
+
+
+@pytest.mark.django_db
+def test_comment_feedback_is_sanitized(apiclient, idea, user, comment_factory):
+    idea.project.moderators.add(user)
+    comment = comment_factory(content_object=idea)
+    url = reverse("moderatorfeedback-list", kwargs={"comment_pk": comment.pk})
+
+    apiclient.force_authenticate(user=user)
+    response = apiclient.post(
+        url,
+        {"feedback_text": "<p>Hello</p><script>alert('xss')</script>"},
+        format="json",
+    )
+
+    assert response.status_code == 201
+    assert "<script>" not in response.data["feedback_text"]
+    feedback = ModeratorCommentFeedback.objects.get(comment=comment)
+    assert "<script>" not in feedback.feedback_text

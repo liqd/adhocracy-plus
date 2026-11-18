@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from adhocracy4 import transforms
 from adhocracy4.comments.models import Comment
 from adhocracy4.comments_async import serializers as a4_serializers
 from apps.contrib.dates import get_date_display
@@ -66,6 +67,13 @@ class ModeratorCommentFeedbackSerializer(serializers.ModelSerializer):
         if feedback.modified:
             return get_date_display(feedback.modified)
         return get_date_display(feedback.created)
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data["feedback_text"] = transforms.clean_html_field(
+            instance.feedback_text or ""
+        )
+        return data
 
 
 class CommentWithFeedbackSerializer(a4_serializers.CommentSerializer):
