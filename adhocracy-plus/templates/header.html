@@ -7,12 +7,20 @@
     <nav class="navbar navbar-expand-md">
         <div class="container position-relative">
             <a class="navbar-brand header-upper__brand" href="{% url 'wagtail_serve' '' %}">
-                <img src="{% static 'images/logo.svg' %}" alt="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}" class="header-upper__brand-img" />
+                <img src="{% static 'images/adhocracy-short.svg' %}"
+                     alt="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}"
+                     class="header-upper__brand-img header-upper__brand-img--short d-md-none" />
+                <img src="{% static 'images/logo.svg' %}"
+                     alt="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}"
+                     class="header-upper__brand-img d-none d-md-block" />
             </a>
 
             <ul class="header-upper__nav navbar-nav ms-auto">
                 <li class="nav-item header-upper__lang">
                     {% include 'includes/header_language_switch.html' %}
+                </li>
+                <li class="nav-item header-upper__learning">
+                    {% include 'a4_candy_learning_nuggets/includes/learning_toggle.html' %}
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item header-upper__notification_button">

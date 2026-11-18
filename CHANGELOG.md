@@ -8,9 +8,19 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ## Unreleased
 
 ### Added
+
+- Learning Nuggets: ported the Learning Center with category nuggets, help sidebar and video block
+- Learning Nuggets: live search in the help sidebar
+
 ### Changed
+
 - Comment section: compact layout with connected replies
+- Header: help button opens the Learning Center sidebar; the header is sticky and hides when scrolling down
+
 ### Fixed
+
+- Learning Nuggets: draft and private nuggets are no longer served or listed
+- Learning Nuggets: the help sidebar keeps keyboard focus inside the dialog
 
 
 ## v2611.4

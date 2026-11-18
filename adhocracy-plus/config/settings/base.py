@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+    "django_htmx",
     "csp",
     "django_ckeditor_5",
     "widget_tweaks",
@@ -124,6 +125,7 @@ INSTALLED_APPS = (
     "apps.offlineevents",
     "apps.projects",
     "apps.userdashboard",
+    "apps.learning_nuggets",
     # Apps defining phases
     "apps.activities",
     "apps.budgeting",
@@ -152,6 +154,7 @@ MIDDLEWARE = (
     "django.contrib.messages.middleware.MessageMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 )
 
 # YouTube embeds require a Referer on cross-origin iframe requests.

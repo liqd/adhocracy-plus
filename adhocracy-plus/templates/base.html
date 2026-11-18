@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load absolute_url contrib_tags i18n organisation_tags static wagtailimages_tags wagtailsettings_tags wagtailuserbar %}
+{% load absolute_url contrib_tags i18n organisation_tags static wagtailimages_tags wagtailsettings_tags wagtailuserbar django_htmx %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_organisation as ORGANISATION %}
 <html lang="{{ LANGUAGE_CODE }}">
@@ -43,9 +43,10 @@
     {% endblock social_meta_description %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'learning_sidebar.css' %}" />
     <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'adhocracy4.js' %}"></script>
-    <script src="https://unpkg.com/htmx.org@2.0.8"></script>
+    {% htmx_script %}
     <meta name="viewport" content="width=device-width" />
     
     {% block extra_js %}
@@ -85,6 +86,8 @@
                 {% block content %}{% endblock content %}
             {% endblock super_content %}
         </main>
+
+        {% include "a4_candy_learning_nuggets/includes/learning_sidebar.html" %}
 
         {% block before_footer %}{% endblock before_footer %}
         {% block footer %}

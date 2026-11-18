@@ -1,0 +1,23 @@
+<article class="learning-content learning-search-results">
+    {% if nuggets %}
+        <h2 class="learning-search-results__title">{{ search_summary }}</h2>
+
+        <ul class="u-list-reset learning-search-results__list">
+            {% for nugget in nuggets %}
+                <li>
+                    <a class="learning-search-result"
+                       href="{{ nugget.get_absolute_url }}"
+                       hx-get="{{ nugget.get_absolute_url }}"
+                       hx-target="#learning-content"
+                       hx-swap="innerHTML"
+                       hx-push-url="true"
+                       hx-sync="#learning-sidebar:replace">
+                        {{ nugget.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="learning-search-results__empty">{{ search_summary }}</p>
+    {% endif %}
+</article>
