@@ -400,7 +400,7 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
     const sectionStyle = {
       backgroundImage: 'url(' + userImage + ')'
     }
-    userImageDiv = <div className="col-4 user-avatar user-avatar--small user-avatar--shadow mb-1 userindicator__btn-img" style={sectionStyle} />
+    userImageDiv = <div className="col-auto user-avatar user-avatar--small user-avatar--shadow mb-1 me-3 userindicator__btn-img" style={sectionStyle} />
   }
 
   let commentChangeLog
@@ -458,7 +458,7 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
       <div className="u-border p-4 userdashboard-mod-item__card">
         <div className="d-flex flex-wrap">
           {userImageDiv}
-          <div className="col-6 d-none d-md-block">
+          <div className="col d-none d-md-block">
             <p className="mb-1">
               {getByline()}
             </p>
