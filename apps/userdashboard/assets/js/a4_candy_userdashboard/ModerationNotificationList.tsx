@@ -346,7 +346,7 @@ export default class ModerationNotificationList extends Component<ModerationNoti
                 <ul className="u-list-reset">
                   {this.state.moderationItems.map((item) => (
                     <ModerationNotification
-                      key={item.item_type + '-' + item.pk}
+                      key={item.api_url || item.item_type + '-' + item.pk}
                       notification={item}
                       apiUrl={item.api_url}
                       getUrlParams={() => this.getUrlParams()}
