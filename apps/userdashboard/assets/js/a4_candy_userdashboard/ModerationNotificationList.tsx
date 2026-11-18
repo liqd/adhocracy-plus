@@ -256,7 +256,7 @@ export default class ModerationNotificationList extends Component<ModerationNoti
 
     return (
       <>
-        <div className="row mb-2">
+        <div className="row mb-4">
           <div className="col-12">
             <h1 className="visually-hidden">{headerText}</h1>
             <h2 className="mt-2">
@@ -315,7 +315,7 @@ export default class ModerationNotificationList extends Component<ModerationNoti
             />
           </div>
         </nav>
-        <div className="row align-items-center mb-2">
+        <div className="row align-items-end moderation-list__meta-row">
           <div className="col-12 col-lg-auto">
             <p className="moderation-projects__count u-text--gray mb-0">
               {formatCount(this.getDisplayCount())} {this.getDisplayLabel()}
@@ -323,7 +323,7 @@ export default class ModerationNotificationList extends Component<ModerationNoti
           </div>
           <div className="col-12 col-lg-auto ms-lg-auto">
             <button
-              className="btn btn--light"
+              className="btn moderation-outline-btn"
               type="button"
               onClick={this.markAllResolved}
               disabled={allUnreadCount === 0}
@@ -352,6 +352,8 @@ export default class ModerationNotificationList extends Component<ModerationNoti
                       getUrlParams={() => this.getUrlParams()}
                       loadData={() => this.loadData()}
                       ckeditorConfig={ckeditorConfig}
+                      projectTitle={projectTitle}
+                      projectUrl={projectUrl}
                     />
                   ))}
                 </ul>

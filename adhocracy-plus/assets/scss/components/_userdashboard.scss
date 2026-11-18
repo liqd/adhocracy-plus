@@ -1,3 +1,5 @@
+$moderation-border-color: #ddd;
+
 .userdashboard-profile__side {
     min-height: 100%;
     display: block; // tabpanel se display to none?!
@@ -204,7 +206,7 @@
 
 .moderation-filter__btn {
     padding: 0.75rem 1rem;
-    border: 1px solid $border-color;
+    border: 1px solid $moderation-border-color;
     background-color: $white;
     color: $text-color;
     font-size: $font-size-sm;
@@ -244,7 +246,21 @@
 .moderation-projects__sort {
     .btn--select {
         width: auto;
+        border: 1px solid $moderation-border-color;
+        background-color: $white;
+        color: $text-color;
     }
+}
+
+.moderation-outline-btn {
+    border: 1px solid $moderation-border-color;
+    background-color: $white;
+    color: $text-color;
+}
+
+.moderation-list__meta-row {
+    margin-top: (1.5 * $spacer);
+    margin-bottom: $spacer;
 }
 
 .moderation-projects__count {
@@ -311,4 +327,12 @@
 
 .btn.btn--primary-filled {
     @include button-bg($brand-primary, $brand-primary, $white, 10%);
+}
+
+.u-border.userdashboard-mod-item__card {
+    border-color: $moderation-border-color;
+}
+
+.userdashboard-mod-actions__icon {
+    flex-shrink: 0;
 }

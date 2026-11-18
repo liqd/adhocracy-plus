@@ -1,6 +1,7 @@
 import React from 'react'
 import django from 'django'
 import type { ModeratorFeedback } from './types'
+import { ReplyOutlineIcon } from './ReplyOutlineIcon'
 
 interface ModerationFeedbackProps {
   feedback: ModeratorFeedback
@@ -14,7 +15,7 @@ export const ModerationFeedback = ({ feedback }: ModerationFeedbackProps) => {
   return (
     <div className="userdashboard-mod-feedback">
       <div className="userdashboard-mod-feedback__header">
-        <i className="fas fa-reply me-2" aria-hidden="true" />
+        <span className="me-2"><ReplyOutlineIcon /></span>
         <span className="userdashboard-mod-feedback__title">{translated.title}</span>
       </div>
       <p className="userdashboard-mod-feedback__date mb-2">{feedback.last_edit}</p>

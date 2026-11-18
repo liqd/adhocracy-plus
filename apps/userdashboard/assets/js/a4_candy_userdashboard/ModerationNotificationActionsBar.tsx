@@ -1,5 +1,6 @@
 import React from 'react'
 import django from 'django'
+import { ReplyOutlineIcon } from './ReplyOutlineIcon'
 
 interface ModerationNotificationActionsBarProps {
   isEditing?: boolean
@@ -69,10 +70,9 @@ export const ModerationNotificationActionsBar = (props: ModerationNotificationAc
         type="button"
         onClick={() => onToggleForm?.(!!isEditing)}
       >
-        <i
-          className={isEditing ? 'fas fa-pen' : 'fas fa-reply'}
-          aria-hidden="true"
-        />
+        {isEditing
+          ? <i className="fas fa-pen" aria-hidden="true" />
+          : <ReplyOutlineIcon />}
         <span className="ms-2">
           {isEditing ? translated.editFeedback : translated.giveFeedback}
         </span>

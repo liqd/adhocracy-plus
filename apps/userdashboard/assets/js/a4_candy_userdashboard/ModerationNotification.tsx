@@ -24,7 +24,9 @@ const translated = {
   hiddenFromDiscussion: django.gettext('Hidden from discussion by Moderator'),
   aiClassified: django.gettext('AI'),
   postedComment: django.gettext('posted a {}comment{}'),
-  submittedIdea: django.gettext('submitted the idea'),
+  submittedIdea: django.gettext('submitted the idea at'),
+  commentedOn: django.gettext('commented on'),
+  project: django.gettext('the project'),
   statusSaved: django.gettext('Processing status saved.'),
   readMore: django.gettext('Read more'),
   showLess: django.gettext('Show less'),
@@ -46,10 +48,12 @@ interface ModerationNotificationProps {
   loadData?: () => void
   onChangeStatus?: (error: unknown) => void
   ckeditorConfig?: string
+  projectTitle?: string
+  projectUrl?: string
 }
 
 export const ModerationNotification = (props: ModerationNotificationProps) => {
-  const { notification } = props
+  const { notification, projectTitle, projectUrl } = props
   const isIdea = notification.item_type === 'idea'
   const [showFeedbackForm, setShowFeedbackForm] = useState(false)
   const [showFullText, setShowFullText] = useState(false)
@@ -407,20 +411,25 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
   }
 
   function getByline () {
+    const projectLink = projectUrl && projectTitle
+      ? <a href={projectUrl}>{projectTitle}</a>
+      : null
     if (isIdea) {
       return (
         <>
           <i className="fas fa-lightbulb me-1" aria-hidden="true" />
           {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName}{' '}
           {translated.submittedIdea}{' '}
-          <a href={itemUrl}>{ideaTitle}</a>
+          {projectLink || <a href={itemUrl}>{ideaTitle}</a>}
         </>
       )
     }
     return (
       <>
         <i className="far fa-comment me-1" aria-hidden="true" />
-        {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName} {getLink(translated.postedComment, itemUrl)}
+        {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName}{' '}
+        {translated.commentedOn}{' '}
+        {projectLink || <a href={itemUrl}>{translated.project}</a>}
       </>
     )
   }
@@ -446,7 +455,7 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
 
   return (
     <li>
-      <div className="u-border p-4">
+      <div className="u-border p-4 userdashboard-mod-item__card">
         <div className="d-flex flex-wrap">
           {userImageDiv}
           <div className="col-6 d-none d-md-block">
