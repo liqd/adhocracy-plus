@@ -3,7 +3,7 @@ import { act, renderHook } from '@testing-library/react'
 import { usePollActions } from '../hooks/usePollActions'
 import { initialState } from '../reducers/pollReducer'
 import { ACTIONS, STATES } from '../utils/stateMachine'
-import { MANDATORY_QUESTION_ERROR } from '../utils/alerts'
+import { MANDATORY_QUESTION_ERROR, ALERT_INCOMPLETE } from '../utils/alerts'
 import type { PollQuestion, PollState } from '../types'
 
 const mandatoryQuestion: PollQuestion = {
@@ -102,5 +102,27 @@ describe('usePollActions', () => {
       payload: 0
     })
     expect(dispatch).not.toHaveBeenCalledWith({ type: ACTIONS.SUBMIT_START })
+  })
+
+  it('submits when an optional question was cleared', async () => {
+    const dispatch = jest.fn()
+    const state: PollState = {
+      ...baseState,
+      userAnswers: {
+        [mandatoryQuestion.id]: { choices: [10] },
+        [optionalQuestion.id]: { choices: [] }
+      }
+    }
+    const { result } = renderHook(() => usePollActions(state, dispatch, 1))
+
+    await act(async () => {
+      await result.current.handleSubmitAll()
+    })
+
+    expect(dispatch).toHaveBeenCalledWith({ type: ACTIONS.SUBMIT_START })
+    expect(dispatch).not.toHaveBeenCalledWith({
+      type: ACTIONS.SET_ALERT,
+      payload: ALERT_INCOMPLETE
+    })
   })
 })

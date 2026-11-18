@@ -20,6 +20,19 @@ export const hasValidAnswer = (question: PollQuestion | undefined, answer: UserA
   return hasChoice
 }
 
+/**
+ * An answer object without any content means the participant cleared a
+ * previously saved answer. It counts as skipped rather than invalid.
+ */
+export const isEmptyAnswer = (answer: UserAnswer | undefined): boolean => {
+  if (!answer) return true
+  const hasChoices = Array.isArray(answer.choices) && answer.choices.length > 0
+  const hasOpenAnswer = typeof answer.open_answer === 'string' && answer.open_answer.trim() !== ''
+  const hasOtherAnswer = typeof answer.other_choice_answer === 'string' &&
+    answer.other_choice_answer.trim() !== ''
+  return !hasChoices && !hasOpenAnswer && !hasOtherAnswer
+}
+
 export const buildVoteData = (userAnswers: UserAnswers): Record<number, UserAnswer> => {
   const voteData: Record<number, UserAnswer> = {}
   for (const [questionId, answer] of Object.entries(userAnswers)) {

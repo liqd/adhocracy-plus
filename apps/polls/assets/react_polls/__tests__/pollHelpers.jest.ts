@@ -1,4 +1,4 @@
-import { hasValidAnswer, getUnansweredMandatoryQuestions } from '../utils/pollHelpers'
+import { hasValidAnswer, getUnansweredMandatoryQuestions, isEmptyAnswer } from '../utils/pollHelpers'
 import type { PollQuestion, UserAnswers } from '../types'
 
 const singleQuestion: PollQuestion = {
@@ -103,5 +103,20 @@ describe('getUnansweredMandatoryQuestions', () => {
 
   it('returns nothing when the poll has no mandatory questions', () => {
     expect(getUnansweredMandatoryQuestions([optionalQuestion], {})).toEqual([])
+  })
+})
+
+describe('isEmptyAnswer', () => {
+  it('treats cleared answers as empty', () => {
+    expect(isEmptyAnswer(undefined)).toBe(true)
+    expect(isEmptyAnswer({ choices: [] })).toBe(true)
+    expect(isEmptyAnswer({ open_answer: '   ' })).toBe(true)
+    expect(isEmptyAnswer({ choices: [], other_choice_answer: '  ' })).toBe(true)
+  })
+
+  it('does not treat actual answers as empty', () => {
+    expect(isEmptyAnswer({ choices: [10] })).toBe(false)
+    expect(isEmptyAnswer({ open_answer: 'an answer' })).toBe(false)
+    expect(isEmptyAnswer({ other_choice_answer: 'an answer' })).toBe(false)
   })
 })

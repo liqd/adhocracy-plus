@@ -1,7 +1,7 @@
 // apps/polls/assets/react_polls/hooks/usePollActions.ts
 import { useCallback, type Dispatch } from 'react'
 import { ACTIONS } from '../utils/stateMachine'
-import { hasValidAnswer, buildVoteData, getUnansweredMandatoryQuestions } from '../utils/pollHelpers'
+import { hasValidAnswer, isEmptyAnswer, buildVoteData, getUnansweredMandatoryQuestions } from '../utils/pollHelpers'
 import { ALERT_INVALID, ALERT_SUCCESS, ALERT_ERROR, ALERT_INCOMPLETE, ALERT_CAPTCHA_INCOMPLETE, MANDATORY_QUESTION_ERROR } from '../utils/alerts'
 import { usePollSubmission } from './usePollSubmission'
 import type { PollAction, PollQuestion, PollState, UserAnswer } from '../types'
@@ -87,7 +87,7 @@ export const usePollActions = (state: PollState, dispatch: Dispatch<PollAction>,
 
     const allValid = state.questions.every(q => {
       const answer = state.userAnswers[q.id]
-      return !answer || hasValidAnswer(q, answer)
+      return !answer || isEmptyAnswer(answer) || hasValidAnswer(q, answer)
     })
     if (!allValid) {
       dispatch({ type: ACTIONS.SET_ALERT, payload: ALERT_INCOMPLETE })
