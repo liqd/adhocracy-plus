@@ -1,3 +1,4 @@
+import re
 from email.utils import formataddr
 
 from django.urls import reverse
@@ -30,7 +31,8 @@ class NewsletterEmail(Email):
     def get_reply_to(self):
         if not self._newsletter.sender:
             return []
-        return [formataddr((self._newsletter.sender_name, self._newsletter.sender))]
+        sender_name = re.sub(r"[\r\n]+", " ", self._newsletter.sender_name or "")
+        return [formataddr((sender_name.strip(), self._newsletter.sender))]
 
     def render_for_receiver(self, receiver):
         self.object = self._newsletter

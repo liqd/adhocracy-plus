@@ -76,6 +76,24 @@ def test_newsletter_reply_to_without_sender():
     assert email.get_reply_to() == []
 
 
+def test_newsletter_reply_to_strips_line_breaks_from_sender_name():
+    newsletter = Newsletter(
+        sender_name="Jane\r\nBcc: evil@example.org", sender="jane@example.org"
+    )
+    email = NewsletterEmail(newsletter, None, [])
+
+    reply_to = email.get_reply_to()
+    assert reply_to == ['"Jane Bcc: evil@example.org" <jane@example.org>']
+    assert not any("\r" in value or "\n" in value for value in reply_to)
+
+
+def test_newsletter_reply_to_with_only_line_breaks_as_sender_name():
+    newsletter = Newsletter(sender_name="\r\n", sender="jane@example.org")
+    email = NewsletterEmail(newsletter, None, [])
+
+    assert email.get_reply_to() == ["jane@example.org"]
+
+
 @pytest.mark.django_db
 def test_newsletter_email_body_in_text_and_html_parts():
     user = UserFactory()
