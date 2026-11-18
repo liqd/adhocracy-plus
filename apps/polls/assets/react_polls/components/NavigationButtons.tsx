@@ -6,6 +6,7 @@ interface NavigationButtonsProps {
   isLastQuestion: boolean
   isLoading: boolean
   isSubmitDisabled: boolean
+  isNextDisabled?: boolean
   isMandatory?: boolean
   onBack: () => void
   onSkip: () => void
@@ -18,6 +19,7 @@ const NavigationButtons = ({
   isLastQuestion,
   isLoading,
   isSubmitDisabled,
+  isNextDisabled = false,
   isMandatory = false,
   onBack,
   onSkip,
@@ -53,6 +55,7 @@ const NavigationButtons = ({
                 type="button"
                 className="btn poll__btn--dark"
                 onClick={onNext}
+                disabled={isNextDisabled}
               >
                 {django.gettext('Next')}
               </button>

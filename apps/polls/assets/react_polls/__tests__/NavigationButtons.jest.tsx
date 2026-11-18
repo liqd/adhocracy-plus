@@ -13,6 +13,7 @@ describe('NavigationButtons', () => {
     isLoading: false,
     isLastQuestion: false,
     isSubmitDisabled: false,
+    isNextDisabled: false,
     currentIndex: 0
   }
 
@@ -67,5 +68,10 @@ describe('NavigationButtons', () => {
     render(<NavigationButtons {...defaults} isMandatory />)
     expect(screen.queryByText('Skip')).not.toBeInTheDocument()
     expect(screen.getByText('Next')).toBeInTheDocument()
+  })
+
+  it('disables Next while a mandatory question is unanswered', () => {
+    render(<NavigationButtons {...defaults} isNextDisabled />)
+    expect(screen.getByText('Next')).toBeDisabled()
   })
 })

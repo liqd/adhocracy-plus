@@ -7,11 +7,8 @@ import { PollOpenQuestion } from 'adhocracy4/adhocracy4/polls/static/PollDetail/
 import FieldError from './FieldError'
 import ProgressBar from './ProgressBar'
 import NavigationButtons from './NavigationButtons'
+import { hasValidAnswer } from '../utils/pollHelpers'
 import type { PollQuestion, UserAnswer } from '../types'
-
-const TRANSLATED = {
-  mandatoryHint: django.gettext('* Mandatory question')
-}
 
 const ANSWER_HANDLERS: Record<string, (questionId: number, value: string | number, currentChoices?: number[]) => Partial<UserAnswer>> = {
   single: (questionId, value) => ({ choices: [Number(value)] }),
@@ -32,7 +29,6 @@ interface QuestionFunnelProps {
   currentAnswer?: UserAnswer | null
   currentNumber: number
   totalQuestions: number
-  hasMandatoryQuestions?: boolean
   allowUnregisteredUsers: boolean
   useTermsOfUse: boolean
   agreedTermsOfUse: boolean
@@ -56,7 +52,6 @@ const QuestionFunnel = ({
   currentAnswer,
   currentNumber,
   totalQuestions,
-  hasMandatoryQuestions = false,
   allowUnregisteredUsers,
   useTermsOfUse,
   agreedTermsOfUse,
@@ -122,7 +117,10 @@ const QuestionFunnel = ({
   }), [])
 
   const isLastQuestion = currentNumber === totalQuestions
-  const isSubmitDisabled = (isLastQuestion && useTermsOfUse && !agreedTermsOfUse && !checkedTermsOfUse) ||
+  const isMandatoryUnanswered = !!currentQuestion.is_mandatory &&
+    !hasValidAnswer(currentQuestion, currentAnswer ?? undefined)
+  const isSubmitDisabled = (isLastQuestion && isMandatoryUnanswered) ||
+    (isLastQuestion && useTermsOfUse && !agreedTermsOfUse && !checkedTermsOfUse) ||
     (isLastQuestion && showCaptcha && !captcha)
 
   /* The shared textarea resolves errors by id only, so only the error of the
@@ -151,10 +149,6 @@ const QuestionFunnel = ({
           true
         )}
       </div>
-
-      {hasMandatoryQuestions && (
-        <p className="poll-question-funnel__mandatory-hint">{TRANSLATED.mandatoryHint}</p>
-      )}
 
       <div className="poll-question-content-wrapper">
         {phase === 'exiting' && exitingQuestion
@@ -243,6 +237,7 @@ const QuestionFunnel = ({
         isLoading={isLoading}
         isLastQuestion={isLastQuestion}
         isSubmitDisabled={isSubmitDisabled}
+        isNextDisabled={isMandatoryUnanswered}
         isMandatory={!!currentQuestion.is_mandatory}
         currentIndex={currentNumber - 1}
       />
