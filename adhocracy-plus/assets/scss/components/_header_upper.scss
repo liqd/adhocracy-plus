@@ -136,6 +136,12 @@ html {
     scroll-padding-top: 100px;
 }
 
+// The step wizard aligns every step at the organisation logo. That alignment
+// must not be shifted by the header padding used for in-page anchors.
+[data-wizard-anchor] {
+    scroll-margin-top: -100px;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .header-upper {
         transition: none;
