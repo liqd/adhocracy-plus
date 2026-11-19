@@ -349,3 +349,51 @@ $moderation-border-color: #ddd;
 .userdashboard-mod-actions__icon {
     flex-shrink: 0;
 }
+
+@media (max-width: $breakpoint - 1px) {
+    .moderation-filter {
+        width: 100%;
+    }
+
+    .moderation-filter__btn {
+        flex: 1;
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+        text-align: center;
+    }
+
+    .moderation-projects__sort .btn--select {
+        width: 100%;
+    }
+
+    .userdashboard-mod-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    .userdashboard-mod-actions__right {
+        justify-content: space-between;
+        margin-left: 0;
+    }
+
+    .userdashboard-mod-actions__btn {
+        min-height: 40px;
+    }
+
+    .userdashboard-mod-feedback__actions {
+        flex-direction: column;
+        align-items: stretch !important;
+    }
+
+    .userdashboard-mod-feedback__resolve {
+        width: 100%;
+        margin-right: 0 !important;
+        margin-bottom: $spacer;
+    }
+
+    .userdashboard-mod-feedback__actions .btn {
+        width: 100%;
+        margin-right: 0 !important;
+    }
+}

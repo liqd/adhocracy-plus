@@ -316,12 +316,12 @@ export default class ModerationNotificationList extends Component<ModerationNoti
           </div>
         </nav>
         <div className="row align-items-end moderation-list__meta-row">
-          <div className="col-12 col-lg-auto">
+          <div className="col-auto">
             <p className="moderation-projects__count u-text--gray mb-0">
               {formatCount(this.getDisplayCount())} {this.getDisplayLabel()}
             </p>
           </div>
-          <div className="col-12 col-lg-auto ms-lg-auto">
+          <div className="col-auto ms-auto">
             <button
               className="btn moderation-outline-btn"
               type="button"

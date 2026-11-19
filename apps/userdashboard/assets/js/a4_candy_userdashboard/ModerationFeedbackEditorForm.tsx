@@ -185,7 +185,7 @@ export const ModerationFeedbackEditorForm = (props: ModerationFeedbackEditorForm
               {translated.delete}
             </button>}
         </div>
-        <div className="col-12 col-md-8 d-flex flex-wrap align-items-center justify-content-end">
+        <div className="col-12 col-md-8 d-flex flex-wrap align-items-center justify-content-end userdashboard-mod-feedback__actions">
           <label className="userdashboard-mod-feedback__resolve me-3">
             <input
               type="checkbox"
