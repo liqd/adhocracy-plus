@@ -1,0 +1,78 @@
+{% load i18n %}
+<div class="modal-header preview-modal__header newsletter-preview__header">
+    <button type="button"
+            class="btn btn--light newsletter-preview__action newsletter-preview__back"
+            data-bs-dismiss="modal"
+            aria-label="{% translate 'Back to editing' %}">
+        {% translate 'Back to editing' %}
+    </button>
+    <div class="preview-modal__toggle" role="group" aria-label="{% translate 'Preview device size' %}">
+        <button type="button"
+                class="preview-modal__toggle-btn is-active"
+                data-preview-device="desktop"
+                aria-pressed="true"
+                aria-label="{% translate 'Desktop' %}">
+            <span class="preview-modal__toggle-btn-inner">
+                <i class="fas fa-display" aria-hidden="true"></i>
+            </span>
+        </button>
+        <button type="button"
+                class="preview-modal__toggle-btn"
+                data-preview-device="mobile"
+                aria-pressed="false"
+                aria-label="{% translate 'Mobile' %}">
+            <span class="preview-modal__toggle-btn-inner">
+                <i class="fas fa-mobile-screen-button" aria-hidden="true"></i>
+            </span>
+        </button>
+    </div>
+    <div class="newsletter-preview__header-actions">
+        <button type="button"
+                class="btn btn--light newsletter-preview__action js-newsletter-test-send"
+                hx-post="{{ preview_send_url }}"
+                hx-include="#newsletter-form"
+                hx-target="#newsletter-test-status"
+                hx-swap="innerHTML"
+                hx-disabled-elt="this">
+            {% translate 'Send test email' %}
+        </button>
+        <button type="submit"
+                form="newsletter-form"
+                class="btn newsletter-send js-newsletter-send"
+                name="send">
+            {% translate 'Send newsletter' %}
+        </button>
+    </div>
+</div>
+<div class="modal-body preview-modal__body newsletter-preview__body">
+    <dl class="newsletter-preview__meta">
+        <div class="newsletter-preview__meta-row">
+            <dt>{% translate 'From' %}</dt>
+            <dd>{{ from_email }}</dd>
+        </div>
+        {% if reply_to %}
+        <div class="newsletter-preview__meta-row">
+            <dt>{% translate 'Reply-To' %}</dt>
+            <dd>{{ reply_to }}</dd>
+        </div>
+        {% endif %}
+        <div class="newsletter-preview__meta-row">
+            <dt>{% translate 'Subject' %}</dt>
+            <dd>{{ subject }}</dd>
+        </div>
+        <div class="newsletter-preview__meta-row">
+            <dt>{% translate 'Recipients' %}</dt>
+            <dd class="newsletter-preview__recipient-count">{{ recipient_count }}</dd>
+        </div>
+    </dl>
+
+    <div id="newsletter-preview-frame"
+         class="preview-modal__frame preview-modal__frame--desktop newsletter-preview__frame">
+        <div class="newsletter-preview__email">{{ email_html|safe }}</div>
+    </div>
+
+    <div id="newsletter-test-status"
+         class="newsletter-preview__status js-newsletter-test-status"
+         role="status"
+         aria-live="polite"></div>
+</div>

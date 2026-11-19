@@ -39,6 +39,16 @@ urlpatterns = [
         name="newsletter-create",
     ),
     path(
+        "communication/newsletters/preview/",
+        newsletter_views.DashboardNewsletterPreviewView.as_view(),
+        name="newsletter-preview",
+    ),
+    path(
+        "communication/newsletters/preview/send/",
+        newsletter_views.DashboardNewsletterPreviewSendView.as_view(),
+        name="newsletter-preview-send",
+    ),
+    path(
         "settings/",
         organisation_views.DashboardOrganisationUpdateView.as_view(),
         name="organisation-settings",
