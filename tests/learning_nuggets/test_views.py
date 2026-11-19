@@ -6,7 +6,15 @@ from wagtail.models import PageViewRestriction
 from apps.learning_nuggets.models import LearningCategory
 from apps.learning_nuggets.models import LearningCenterPage
 from apps.learning_nuggets.models import LearningNuggetPage
+from apps.learning_nuggets.models import PermissionLevel
 from apps.learning_nuggets.views import matches_text
+
+
+def _level(name="Teilnehmer:in", order=10):
+    level, _ = PermissionLevel.objects.get_or_create(
+        name=name, defaults={"order": order}
+    )
+    return level
 
 
 def _setup_center():
@@ -16,12 +24,15 @@ def _setup_center():
     return center
 
 
-def _add_nugget(center, category, title, slug, blocks=None, live=True):
+def _add_nugget(
+    center, category, title, slug, blocks=None, live=True, read_length=None
+):
     nugget = LearningNuggetPage(
         title=title,
         slug=slug,
         category=category,
         live=live,
+        read_length=read_length,
         content=[("learning_nugget", block) for block in blocks or []],
     )
     center.add_child(instance=nugget)
@@ -45,7 +56,7 @@ def test_index_returns_full_page_without_htmx(client):
 @pytest.mark.django_db
 def test_index_returns_partial_with_htmx(client):
     _setup_center()
-    LearningCategory.objects.create(name="Category A", permission_level="teilnehmer:in")
+    LearningCategory.objects.create(name="Category A", permission_level=_level())
 
     response = client.get(reverse("learning_nuggets:index"), HTTP_HX_REQUEST="true")
 
@@ -58,10 +69,97 @@ def test_index_returns_partial_with_htmx(client):
 
 
 @pytest.mark.django_db
+def test_index_groups_categories_in_permission_level_order(client):
+    _setup_center()
+    moderator = _level("Moderator:in", 30)
+    participant = _level("Teilnehmer:in", 10)
+    LearningCategory.objects.create(
+        name="Moderation Category", order=10, permission_level=moderator
+    )
+    LearningCategory.objects.create(
+        name="Participant Category", order=10, permission_level=participant
+    )
+
+    content = client.get(reverse("learning_nuggets:index")).content.decode()
+
+    assert (
+        content.index("Teilnehmer:in")
+        < content.index("Participant Category")
+        < content.index("Moderator:in")
+        < content.index("Moderation Category")
+    )
+
+
+@pytest.mark.django_db
+def test_index_renders_collapsible_categories(client):
+    center = _setup_center()
+    category = LearningCategory.objects.create(
+        name="Category A", permission_level=_level()
+    )
+    _add_nugget(
+        center,
+        category,
+        "Registration",
+        "registration",
+        read_length=5,
+    )
+
+    content = client.get(reverse("learning_nuggets:index")).content.decode()
+
+    assert '<details class="learning-category">' in content
+    assert "<summary" in content
+    assert "Registration" in content
+    assert "5 min read" in content
+    assert "learning-nugget__icon--placeholder" in content
+
+
+@pytest.mark.django_db
+def test_full_page_nugget_links_are_plain(client):
+    center = _setup_center()
+    category = LearningCategory.objects.create(
+        name="Category A", permission_level=_level()
+    )
+    _add_nugget(center, category, "Registration", "registration")
+
+    content = client.get(reverse("learning_nuggets:index")).content.decode()
+    link = content.split('class="learning-nugget"', 1)[1].split(">", 1)[0]
+
+    assert "hx-get" not in link
+
+
+@pytest.mark.django_db
+def test_htmx_nugget_links_target_the_sidebar(client):
+    center = _setup_center()
+    category = LearningCategory.objects.create(
+        name="Category A", permission_level=_level()
+    )
+    _add_nugget(center, category, "Registration", "registration")
+
+    content = client.get(
+        reverse("learning_nuggets:index"), HTTP_HX_REQUEST="true"
+    ).content.decode()
+    link = content.split('class="learning-nugget"', 1)[1].split(">", 1)[0]
+
+    assert 'hx-target="#learning-content"' in link
+
+
+@pytest.mark.django_db
+def test_index_orders_categories_within_a_permission_level(client):
+    _setup_center()
+    level = _level()
+    LearningCategory.objects.create(name="Second", order=20, permission_level=level)
+    LearningCategory.objects.create(name="First", order=10, permission_level=level)
+
+    content = client.get(reverse("learning_nuggets:index")).content.decode()
+
+    assert content.index("First") < content.index("Second")
+
+
+@pytest.mark.django_db
 def test_category_returns_partial_with_htmx(client):
     center = _setup_center()
     category = LearningCategory.objects.create(
-        name="Participants", slug="participants", permission_level="teilnehmer:in"
+        name="Participants", slug="participants", permission_level=_level()
     )
     nugget = LearningNuggetPage(
         title="Registration", slug="registration", category=category
@@ -80,20 +178,20 @@ def test_category_returns_partial_with_htmx(client):
 
 
 @pytest.mark.django_db
-def test_legacy_permission_level_is_not_dropped(client):
+def test_category_without_permission_level_is_not_dropped(client):
     _setup_center()
-    LearningCategory.objects.create(name="Legacy", permission_level="participant")
+    LearningCategory.objects.create(name="Unassigned")
 
     response = client.get(reverse("learning_nuggets:index"), HTTP_HX_REQUEST="true")
 
-    assert "Legacy" in response.content.decode()
+    assert "Unassigned" in response.content.decode()
 
 
 @pytest.mark.django_db
 def test_draft_nugget_is_not_served(client):
     center = _setup_center()
     category = LearningCategory.objects.create(
-        name="Participants", slug="participants", permission_level="teilnehmer:in"
+        name="Participants", slug="participants", permission_level=_level()
     )
     nugget = LearningNuggetPage(
         title="Draft", slug="draft", category=category, live=False
@@ -120,7 +218,7 @@ def test_private_nugget_section_is_not_served(client):
     center = _setup_center()
     PageViewRestriction.objects.create(page=center, restriction_type="login")
     category = LearningCategory.objects.create(
-        name="Participants", slug="participants", permission_level="teilnehmer:in"
+        name="Participants", slug="participants", permission_level=_level()
     )
     nugget = LearningNuggetPage(title="Private", slug="private", category=category)
     center.add_child(instance=nugget)

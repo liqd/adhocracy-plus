@@ -7,11 +7,13 @@
                 <li>
                     <a class="learning-search-result"
                        href="{{ nugget.get_absolute_url }}"
+                       {% if is_htmx %}
                        hx-get="{{ nugget.get_absolute_url }}"
                        hx-target="#learning-content"
                        hx-swap="innerHTML"
                        hx-push-url="true"
-                       hx-sync="#learning-sidebar:replace">
+                       hx-sync="#learning-sidebar:replace"
+                       {% endif %}>
                         {{ nugget.title }}
                     </a>
                 </li>

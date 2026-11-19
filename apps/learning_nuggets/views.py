@@ -22,7 +22,7 @@ def live_public_nuggets():
     return (
         LearningNuggetPage.objects.live()
         .public()
-        .select_related("category")
+        .select_related("category", "icon")
         .order_by("order")
     )
 
@@ -183,10 +183,13 @@ class LearningCenterView(HtmxTemplateMixin, ListView):
     context_object_name = "grouped_categories"
     model = LearningCategory
 
-    PERMISSION_ORDER = ["teilnehmer:in", "initiator:in", "moderator:in"]
-
     def get_queryset(self):
-        return super().get_queryset().order_by("order")
+        return (
+            super()
+            .get_queryset()
+            .select_related("permission_level")
+            .order_by("order", "name")
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -211,21 +214,36 @@ class LearningCenterView(HtmxTemplateMixin, ListView):
 
         categories = list(context.get("grouped_categories", []))
 
+        # One query for all visible nuggets keeps the per-category lists free
+        # of N+1 queries.
+        nuggets_by_category = {}
+        for nugget in live_public_nuggets().filter(category__isnull=False):
+            nuggets_by_category.setdefault(nugget.category_id, []).append(nugget)
+
         grouped = {}
         for category in categories:
-            grouped.setdefault(category.permission_level, []).append(category)
+            level = category.permission_level
+            key = level.pk if level else None
+            group = grouped.setdefault(
+                key, {"permission_level": level, "categories": []}
+            )
+            group["categories"].append(
+                {
+                    "category": category,
+                    "nuggets": nuggets_by_category.get(category.pk, []),
+                }
+            )
 
-        # Show the known permission levels first, but never drop categories that
-        # store an unexpected level (e.g. legacy values that were never migrated).
-        ordered_levels = [level for level in self.PERMISSION_ORDER if level in grouped]
-        ordered_levels += [
-            level for level in grouped if level not in self.PERMISSION_ORDER
-        ]
-
-        context["grouped_categories"] = [
-            {"permission_level": level, "categories": grouped[level]}
-            for level in ordered_levels
-        ]
+        # Order by the editable permission level order; categories without a
+        # permission level are always shown last so they are never dropped.
+        context["grouped_categories"] = sorted(
+            grouped.values(),
+            key=lambda group: (
+                group["permission_level"] is None,
+                group["permission_level"].order if group["permission_level"] else 0,
+                group["permission_level"].name if group["permission_level"] else "",
+            ),
+        )
 
         return context
 

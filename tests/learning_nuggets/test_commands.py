@@ -6,6 +6,7 @@ from wagtail.models import Page
 from apps.learning_nuggets.models import LearningCategory
 from apps.learning_nuggets.models import LearningCenterPage
 from apps.learning_nuggets.models import LearningNuggetPage
+from apps.learning_nuggets.models import PermissionLevel
 
 
 @pytest.fixture
@@ -29,9 +30,11 @@ def test_seed_creates_demo_data(homepage):
     center = LearningCenterPage.objects.get()
     assert center.live
     assert LearningCategory.objects.filter(slug__startswith="demo-").count() == 5
+    assert PermissionLevel.objects.count() == 3
     assert _demo_pages().count() == 8
     assert _demo_pages().filter(live=True).count() == 7
     assert _demo_pages().filter(slug="demo-entwurf-passwort", live=False).exists()
+    assert _demo_pages().get(slug="demo-profil-einrichten").read_length == 4
 
 
 @pytest.mark.django_db

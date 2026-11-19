@@ -24,7 +24,10 @@ This app introduces the **Learning Center**, a dynamic content hub for education
   Repurposed a `VideoBlock` from the Liquid site and added it to the CMS. It can be embedded within any nugget to enhance interactivity.
 
 - **Role-Based Access**  
-  Categories are tied to custom permissions (e.g., Moderator, Initiator, Participant) to control access per user role.
+  Categories are grouped by an editable **Permission Level** snippet (Participant, Initiator, Moderator) instead of hardcoded choices, so labels and their order can be managed in Wagtail.
+
+- **Nugget Metadata**
+  Each nugget can have a PNG icon and an estimated reading time. Both are shown in the Learning Center start screen and the category listing.
 
 - **Modular Asset Structure**  
   Introduced an `assets/` folder at the app level to hold JS/CSS for better modularity and maintainability.
@@ -65,7 +68,7 @@ Each category has:
 - A slug (used in URLs)
 - A title
 - A description
-- A role-based permission (`permission_level`)
+- A role-based permission level (selectable **Permission Level** snippet)
 
 > ⚠️ **The `permission_level` is not enforced yet.** All categories and nuggets
 > are publicly visible regardless of the level. The permissions in `rules.py`

@@ -2,16 +2,26 @@
 {% if nugget.category %}
 <nav class="learning-breadcrumb">
     <a href="{% url 'learning_nuggets:category' category_slug=nugget.category.slug %}"
+       {% if is_htmx %}
        hx-get="{% url 'learning_nuggets:category' category_slug=nugget.category.slug %}"
        hx-target="#learning-content"
        hx-swap="innerHTML"
        hx-push-url="true"
-       hx-sync="#learning-sidebar:replace">
+       hx-sync="#learning-sidebar:replace"
+       {% endif %}>
         <i class="fas fa-chevron-left learning-breadcrumb__icon"
            aria-hidden="true"></i>{{ nugget.category }}
     </a>
 </nav>
 {% endif %}
+<header class="learning-nugget-header">
+    <h2 class="learning-content__title learning-content__title--lg">{{ nugget.title }}</h2>
+    {% if nugget.read_length %}
+        <p class="learning-nugget__read-time">
+            {% blocktranslate with minutes=nugget.read_length %}{{ minutes }} min read{% endblocktranslate %}
+        </p>
+    {% endif %}
+</header>
 {% for block in nugget.content %}
     {% include_block block %}
 {% empty %}

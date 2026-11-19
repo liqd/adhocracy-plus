@@ -5,43 +5,50 @@ from wagtail.models import Page
 from apps.learning_nuggets.models import LearningCategory
 from apps.learning_nuggets.models import LearningCenterPage
 from apps.learning_nuggets.models import LearningNuggetPage
+from apps.learning_nuggets.models import PermissionLevel
 
 DEMO_SLUG_PREFIX = "demo-"
+
+PERMISSION_LEVELS = [
+    {"name": "Teilnehmer:in", "order": 10},
+    {"name": "Initiator:in", "order": 20},
+    {"name": "Moderator:in", "order": 30},
+]
 
 CATEGORIES = [
     {
         "slug": "demo-erste-schritte",
         "name": "Erste Schritte",
         "description": "Grundlagen für neue Nutzer:innen.",
-        "permission_level": "teilnehmer:in",
+        "permission_level": "Teilnehmer:in",
         "order": 10,
     },
     {
         "slug": "demo-profil",
         "name": "Profil & Konto",
         "description": "Profil, Passwort und Anmeldung.",
-        "permission_level": "teilnehmer:in",
+        "permission_level": "Teilnehmer:in",
         "order": 20,
     },
     {
         "slug": "demo-beteiligung",
         "name": "Beteiligung",
         "description": "Ideen, Kommentare und Abstimmungen.",
-        "permission_level": "teilnehmer:in",
+        "permission_level": "Teilnehmer:in",
         "order": 30,
     },
     {
         "slug": "demo-projekte",
         "name": "Projekte anlegen",
         "description": "Projekte erstellen und verwalten.",
-        "permission_level": "initiator:in",
+        "permission_level": "Initiator:in",
         "order": 40,
     },
     {
         "slug": "demo-moderation",
         "name": "Moderation",
         "description": "Inhalte prüfen und moderieren.",
-        "permission_level": "moderator:in",
+        "permission_level": "Moderator:in",
         "order": 50,
     },
 ]
@@ -52,6 +59,7 @@ NUGGETS = [
         "title": "Profil einrichten",
         "category": "demo-erste-schritte",
         "order": 10,
+        "read_length": 4,
         "blocks": [
             {
                 "title": "Profil anlegen",
@@ -74,6 +82,7 @@ NUGGETS = [
         "title": "Konto verwalten",
         "category": "demo-profil",
         "order": 20,
+        "read_length": 3,
         "blocks": [
             {
                 "title": "Passwort zurücksetzen",
@@ -96,6 +105,7 @@ NUGGETS = [
         "title": "Registrierung und Anmeldung",
         "category": "demo-erste-schritte",
         "order": 30,
+        "read_length": 2,
         "blocks": [
             {
                 "title": "Willkommen bei adhocracy+",
@@ -111,6 +121,7 @@ NUGGETS = [
         "title": "Ideen einreichen",
         "category": "demo-beteiligung",
         "order": 40,
+        "read_length": 3,
         "blocks": [
             {
                 "title": "Eine Idee erstellen",
@@ -126,6 +137,7 @@ NUGGETS = [
         "title": "Projekt anlegen",
         "category": "demo-projekte",
         "order": 50,
+        "read_length": 5,
         "blocks": [
             {
                 "title": "Neues Projekt starten",
@@ -148,6 +160,7 @@ NUGGETS = [
         "title": "Kommentare moderieren",
         "category": "demo-moderation",
         "order": 60,
+        "read_length": 4,
         "blocks": [
             {
                 "title": "Kommentar ausblenden",
@@ -170,6 +183,7 @@ NUGGETS = [
         "title": "Datenschutz & Sicherheit",
         "category": "demo-profil",
         "order": 70,
+        "read_length": 2,
         "blocks": [
             {
                 "title": "Daten & Privatsphäre",
@@ -185,6 +199,7 @@ NUGGETS = [
         "title": "Entwurf: Passwort-Reset",
         "category": "demo-profil",
         "order": 80,
+        "read_length": 2,
         "draft": True,
         "blocks": [
             {
@@ -291,6 +306,14 @@ class Command(BaseCommand):
         return center
 
     def _create_categories(self):
+        permission_levels = {}
+        for data in PERMISSION_LEVELS:
+            level, _ = PermissionLevel.objects.update_or_create(
+                name=data["name"],
+                defaults={"order": data["order"]},
+            )
+            permission_levels[level.name] = level
+
         categories = {}
         for data in CATEGORIES:
             category, _ = LearningCategory.objects.update_or_create(
@@ -298,7 +321,7 @@ class Command(BaseCommand):
                 defaults={
                     "name": data["name"],
                     "description": data["description"],
-                    "permission_level": data["permission_level"],
+                    "permission_level": permission_levels[data["permission_level"]],
                     "order": data["order"],
                 },
             )
@@ -324,6 +347,7 @@ class Command(BaseCommand):
                     slug=data["slug"],
                     category=category,
                     content=content,
+                    read_length=data.get("read_length"),
                     order=data["order"],
                     live=not is_draft,
                 )
@@ -333,6 +357,7 @@ class Command(BaseCommand):
                 page.title = data["title"]
                 page.category = category
                 page.content = content
+                page.read_length = data.get("read_length")
                 page.order = data["order"]
                 page.save()
                 updated += 1

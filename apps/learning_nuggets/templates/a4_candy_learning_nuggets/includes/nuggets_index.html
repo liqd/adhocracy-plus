@@ -1,4 +1,4 @@
-{% load i18n rules learning_nuggets_tags %}
+{% load i18n wagtailimages_tags %}
 
 {% if is_htmx %}
     {# Announce result changes to screen readers, including the empty state. #}
@@ -12,26 +12,71 @@
         <h2 class="learning-content__title learning-content__title--lg">{{ page.title }}</h2>
 
         {% for group in grouped_categories %}
-            <h2 class="learning-content__title learning-content__title--md">
-                {% get_permission_display group.permission_level %}
-            </h2>
-            <ul class="u-list-reset learning-content__categories">
-                {% for category in group.categories %}
-                    <li class="learning-content__categories__item">
-                        <article>
-                            <a href="{% url 'learning_nuggets:category' category_slug=category.slug %}"
-                               class="u-no-underline"
-                               hx-get="{% url 'learning_nuggets:category' category_slug=category.slug %}"
-                               hx-target="#learning-content"
-                               hx-swap="innerHTML"
-                               hx-push-url="true"
-                               hx-sync="#learning-sidebar:replace">
-                                {{ category.name }}
-                            </a>
-                        </article>
-                    </li>
-                {% endfor %}
-            </ul>
+            <section class="learning-group"
+                     aria-labelledby="learning-group-{{ forloop.counter }}">
+                <h3 id="learning-group-{{ forloop.counter }}"
+                    class="learning-group__title">
+                    {% if group.permission_level %}
+                        <span class="learning-pill">{{ group.permission_level.name }}</span>
+                    {% else %}
+                        <span class="learning-pill">{% translate 'Other' %}</span>
+                    {% endif %}
+                </h3>
+
+                <div class="learning-categories">
+                    {% for entry in group.categories %}
+                        <details class="learning-category">
+                            <summary class="learning-category__summary">
+                                <span class="learning-category__name">{{ entry.category.name }}</span>
+                                <span class="learning-category__chevron" aria-hidden="true">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </summary>
+
+                            <ul class="learning-category__nuggets u-list-reset">
+                                {% for nugget in entry.nuggets %}
+                                    {% url 'learning_nuggets:nugget-detail' category_slug=entry.category.slug nugget_slug=nugget.slug as nugget_url %}
+                                    <li>
+                                        <a class="learning-nugget"
+                                           href="{{ nugget_url }}"
+                                           {% if is_htmx %}
+                                           hx-get="{{ nugget_url }}"
+                                           hx-target="#learning-content"
+                                           hx-swap="innerHTML"
+                                           hx-push-url="true"
+                                           hx-sync="#learning-sidebar:replace"
+                                           {% endif %}>
+                                            {% if nugget.icon %}
+                                                {% image nugget.icon fill-24x24 as nugget_icon %}
+                                                <img src="{{ nugget_icon.url }}"
+                                                     alt=""
+                                                     class="learning-nugget__icon"
+                                                     width="24"
+                                                     height="24">
+                                            {% else %}
+                                                <span class="learning-nugget__icon learning-nugget__icon--placeholder"
+                                                      aria-hidden="true"></span>
+                                            {% endif %}
+                                            <span class="learning-nugget__text">
+                                                <span class="learning-nugget__title">{{ nugget.title }}</span>
+                                                {% if nugget.read_length %}
+                                                    <span class="learning-nugget__read-time">
+                                                        {% blocktranslate with minutes=nugget.read_length %}{{ minutes }} min read{% endblocktranslate %}
+                                                    </span>
+                                                {% endif %}
+                                            </span>
+                                        </a>
+                                    </li>
+                                {% empty %}
+                                    <li class="learning-category__empty">
+                                        {% translate 'No learning nuggets available in this category.' %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </details>
+                    {% endfor %}
+                </div>
+            </section>
         {% empty %}
             <p>{% translate 'No categories available.' %}</p>
         {% endfor %}

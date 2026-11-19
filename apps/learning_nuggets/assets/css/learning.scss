@@ -1,6 +1,8 @@
 @import '../../../../adhocracy-plus/assets/scss/variables';
 @import './learning_sidebar';
 
+$learning-pill-bg: #e8effa;
+
 // Learning Header
 .learning-header {
   display: flex;
@@ -204,16 +206,152 @@
   max-width: 30rem;
 }
 
-.learning-content__categories__item {
-  margin-bottom: 16px;
+.learning-content:last-child  {
+  padding-bottom: 3rem;
+}
 
-  &:last-child {
-    margin-bottom: 39px;
+// Permission levels and collapsible categories on the start screen
+.learning-group {
+  margin-bottom: 32px;
+
+  &__title {
+    margin: 0 0 20px;
   }
 }
 
-.learning-content:last-child  {
-  padding-bottom: 3rem;
+.learning-pill {
+  display: inline-block;
+  padding: 6px 4px;
+  border-radius: 4px;
+  background-color: $learning-pill-bg;
+  color: $text-color;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.learning-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.learning-category {
+  &__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacer;
+    cursor: pointer;
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::marker {
+      content: "";
+    }
+
+    &:focus-visible {
+      outline: 2px solid $primary;
+      outline-offset: 2px;
+    }
+  }
+
+  &__name {
+    font-family: $font-family-base;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  &__chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    transition: transform 0.2s ease;
+  }
+
+  &[open] &__chevron {
+    transform: rotate(180deg);
+  }
+
+  &__nuggets {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 8px;
+  }
+
+  &__empty {
+    padding: 8px 0;
+  }
+}
+
+.learning-nugget {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid $border-color;
+  background-color: $body-bg;
+  color: $text-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+
+  &__icon {
+    flex: 0 0 24px;
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  &__icon--placeholder {
+    border-radius: 2px;
+    background-color: $gray-lightest;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  &__read-time {
+    margin: 0;
+    color: $text-color-gray;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+.learning-nugget-header {
+  margin-bottom: 16px;
+}
+
+.learning-nugget-item__read-time {
+  margin: 0;
+  color: $text-color-gray;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 // h2/h3/h4 are added by wagtail richtext without a class, hence the nots
