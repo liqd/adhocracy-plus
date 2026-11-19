@@ -1,5 +1,10 @@
+from pathlib import Path
+
+from django.contrib.staticfiles import finders
+from django.core.files import File
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
+from wagtail.images import get_image_model
 from wagtail.models import Page
 
 from apps.learning_nuggets.models import LearningCategory
@@ -8,6 +13,7 @@ from apps.learning_nuggets.models import LearningNuggetPage
 from apps.learning_nuggets.models import PermissionLevel
 
 DEMO_SLUG_PREFIX = "demo-"
+ICON_DIR = "learning_nuggets/icons"
 
 PERMISSION_LEVELS = [
     {"name": "Teilnehmer:in", "order": 10},
@@ -60,6 +66,7 @@ NUGGETS = [
         "category": "demo-erste-schritte",
         "order": 10,
         "read_length": 4,
+        "icon": "user-gear.png",
         "blocks": [
             {
                 "title": "Profil anlegen",
@@ -83,6 +90,7 @@ NUGGETS = [
         "category": "demo-profil",
         "order": 20,
         "read_length": 3,
+        "icon": "gear.png",
         "blocks": [
             {
                 "title": "Passwort zurücksetzen",
@@ -106,6 +114,7 @@ NUGGETS = [
         "category": "demo-erste-schritte",
         "order": 30,
         "read_length": 2,
+        "icon": "right-to-bracket.png",
         "blocks": [
             {
                 "title": "Willkommen bei adhocracy+",
@@ -122,6 +131,7 @@ NUGGETS = [
         "category": "demo-beteiligung",
         "order": 40,
         "read_length": 3,
+        "icon": "lightbulb.png",
         "blocks": [
             {
                 "title": "Eine Idee erstellen",
@@ -138,6 +148,7 @@ NUGGETS = [
         "category": "demo-projekte",
         "order": 50,
         "read_length": 5,
+        "icon": "cubes.png",
         "blocks": [
             {
                 "title": "Neues Projekt starten",
@@ -161,6 +172,7 @@ NUGGETS = [
         "category": "demo-moderation",
         "order": 60,
         "read_length": 4,
+        "icon": "comment.png",
         "blocks": [
             {
                 "title": "Kommentar ausblenden",
@@ -184,6 +196,7 @@ NUGGETS = [
         "category": "demo-profil",
         "order": 70,
         "read_length": 2,
+        "icon": "shield-halved.png",
         "blocks": [
             {
                 "title": "Daten & Privatsphäre",
@@ -200,6 +213,7 @@ NUGGETS = [
         "category": "demo-profil",
         "order": 80,
         "read_length": 2,
+        "icon": "lock.png",
         "draft": True,
         "blocks": [
             {
@@ -328,8 +342,29 @@ class Command(BaseCommand):
             categories[category.slug] = category
         return categories
 
+    def _get_or_create_icon(self, filename):
+        """Import a bundled PNG into Wagtail images and return it."""
+        if not filename:
+            return None
+
+        image_model = get_image_model()
+        title = f"Learning nugget icon: {Path(filename).stem.replace('-', ' ')}"
+        image = image_model.objects.filter(title=title).first()
+        if image is not None:
+            return image
+
+        path = finders.find(f"{ICON_DIR}/{filename}")
+        if path is None:
+            return None
+
+        with open(path, "rb") as source:
+            image = image_model(title=title)
+            image.file.save(filename, File(source), save=True)
+        return image
+
     def _create_nuggets(self, center, categories):
         created = updated = drafts = 0
+        icons = {}
 
         for data in NUGGETS:
             category = categories[data["category"]]
@@ -341,12 +376,18 @@ class Command(BaseCommand):
             )
             is_draft = data.get("draft", False)
 
+            icon_name = data.get("icon")
+            if icon_name not in icons:
+                icons[icon_name] = self._get_or_create_icon(icon_name)
+            icon = icons[icon_name]
+
             if page is None:
                 page = LearningNuggetPage(
                     title=data["title"],
                     slug=data["slug"],
                     category=category,
                     content=content,
+                    icon=icon,
                     read_length=data.get("read_length"),
                     order=data["order"],
                     live=not is_draft,
@@ -357,6 +398,7 @@ class Command(BaseCommand):
                 page.title = data["title"]
                 page.category = category
                 page.content = content
+                page.icon = icon
                 page.read_length = data.get("read_length")
                 page.order = data["order"]
                 page.save()

@@ -4,6 +4,7 @@ from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField
+from wagtail.images import get_image_model_string
 from wagtail.models import Orderable
 from wagtail.models import Page
 from wagtail.search import index
@@ -115,7 +116,7 @@ class LearningNuggetPage(Page, Orderable):
     )
 
     icon = models.ForeignKey(
-        "wagtailimages.Image",
+        get_image_model_string(),
         on_delete=models.SET_NULL,
         null=True,
         blank=True,

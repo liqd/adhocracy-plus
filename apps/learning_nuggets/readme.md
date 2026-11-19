@@ -70,6 +70,17 @@ Each category has:
 - A description
 - A role-based permission level (selectable **Permission Level** snippet)
 
+### 4. Nugget Icons
+
+The Font Awesome PNGs used by the demo content live in
+`apps/learning_nuggets/static/learning_nuggets/icons/`. The
+`seed_learning_nuggets` command imports them into Wagtail images and assigns
+them to the demo nuggets.
+
+For real content, upload a PNG under **Images** in Wagtail and select it in the
+nugget's **Icon** field. The reading time is entered in minutes in the
+**Read length** field.
+
 > ⚠️ **The `permission_level` is not enforced yet.** All categories and nuggets
 > are publicly visible regardless of the level. The permissions in `rules.py`
 > (`view_participant_content`, `view_initiator_content`,

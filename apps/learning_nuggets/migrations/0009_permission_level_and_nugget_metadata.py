@@ -71,8 +71,8 @@ def backwards(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
+        ("a4_candy_cms_images", "0005_customimage_description"),
         ("a4_candy_learning_nuggets", "0008_normalise_permission_level"),
-        ("wagtailimages", "0027_image_description"),
     ]
 
     operations = [
@@ -129,7 +129,7 @@ class Migration(migrations.Migration):
                 null=True,
                 on_delete=django.db.models.deletion.SET_NULL,
                 related_name="+",
-                to="wagtailimages.image",
+                to="a4_candy_cms_images.customimage",
             ),
         ),
         migrations.AddField(
