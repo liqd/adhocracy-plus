@@ -11,6 +11,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Learning Nuggets: ported the Learning Center with category nuggets, help sidebar and video block
 - Learning Nuggets: live search in the help sidebar
+- Newsletter: preview the fully rendered email in a modal before sending, with
+  desktop and mobile views, recipient count and a confirmation step. Includes a
+  "Send test email to me" action using a ``[TEST]`` subject prefix. The preview
+  uses the same email template as the actual send and includes the current,
+  unsaved form values.
 
 ### Changed
 
@@ -57,7 +62,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - audit: admin audit log records now as an extra view
 - Tests: e2e coverage for the React/vanilla JS widgets: poll multi-question funnel and review step, moderation actions (block, highlight, feedback), interactive events present screen, organisation project search, project follow, and document chapter editing; the suite standardizes on Playwright's `expect()` assertions
 - polls: add option to hide preliminary results until phase end
-- polls: add a human readable answer export 
+- polls: add a human readable answer export
 - Management command ``send_newsletter_settings_notice`` plus an English/German
   notice email to inform users whose newsletter opt-in may have been reset by
   the profile-edit bug. Recipients are the refined candidate pool; every sent
@@ -89,11 +94,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Login and registration: social logins redesigned as icon buttons below an
   "Or continue with" heading
 - Login and registration modal added
-- Newsletter: preview the fully rendered email in a modal before sending, with
-  desktop and mobile views, recipient count and a confirmation step. Includes a
-  "Send test email to me" action using a ``[TEST]`` subject prefix. The preview
-  uses the same email template as the actual send and includes the current,
-  unsaved form values.
 
 ### Changed
 
