@@ -4,8 +4,10 @@ import django from 'django'
 import { TermsOfUseCheckbox } from 'adhocracy4/adhocracy4/static/TermsOfUseCheckbox'
 import { PollChoice } from './PollChoice'
 import { PollOpenQuestion } from 'adhocracy4/adhocracy4/polls/static/PollDetail/PollOpenQuestion'
+import FieldError from './FieldError'
 import ProgressBar from './ProgressBar'
 import NavigationButtons from './NavigationButtons'
+import { hasValidAnswer } from '../utils/pollHelpers'
 import type { PollQuestion, UserAnswer } from '../types'
 
 const ANSWER_HANDLERS: Record<string, (questionId: number, value: string | number, currentChoices?: number[]) => Partial<UserAnswer>> = {
@@ -115,8 +117,17 @@ const QuestionFunnel = ({
   }), [])
 
   const isLastQuestion = currentNumber === totalQuestions
-  const isSubmitDisabled = (isLastQuestion && useTermsOfUse && !agreedTermsOfUse && !checkedTermsOfUse) ||
+  const isMandatoryUnanswered = !!currentQuestion.is_mandatory &&
+    !hasValidAnswer(currentQuestion, currentAnswer ?? undefined)
+  const isSubmitDisabled = (isLastQuestion && isMandatoryUnanswered) ||
+    (isLastQuestion && useTermsOfUse && !agreedTermsOfUse && !checkedTermsOfUse) ||
     (isLastQuestion && showCaptcha && !captcha)
+
+  /* The shared textarea resolves errors by id only, so only the error of the
+     current question is forwarded to it to keep question and choice ids apart. */
+  const currentQuestionErrors = (errors as Record<number, unknown>)?.[currentQuestion.id]
+    ? { [currentQuestion.id]: (errors as Record<number, unknown>)[currentQuestion.id] }
+    : {}
 
   const handleAnswerUpdate = (questionId: number, value: string | number, type: string) => {
     const handler = ANSWER_HANDLERS[type]
@@ -186,13 +197,21 @@ const QuestionFunnel = ({
                   />
                   )
                 : (
-                  <PollChoice
-                    key={currentQuestion.id}
-                    question={enrichQuestion(currentQuestion, currentAnswer)}
-                    allowUnregisteredUsers={allowUnregisteredUsers}
-                    onAnswerChange={handleAnswerUpdate}
-                    errors={errors}
-                  />
+                  <>
+                    <PollChoice
+                      key={currentQuestion.id}
+                      question={enrichQuestion(currentQuestion, currentAnswer)}
+                      allowUnregisteredUsers={allowUnregisteredUsers}
+                      onAnswerChange={handleAnswerUpdate}
+                      errors={currentQuestionErrors}
+                    />
+                    {/* open questions render the error inside their textarea */}
+                    <FieldError
+                      id={`id_error-${currentQuestion.id}`}
+                      error={errors}
+                      field={String(currentQuestion.id)}
+                    />
+                  </>
                   )}
             </div>
             )}
@@ -218,6 +237,8 @@ const QuestionFunnel = ({
         isLoading={isLoading}
         isLastQuestion={isLastQuestion}
         isSubmitDisabled={isSubmitDisabled}
+        isNextDisabled={isMandatoryUnanswered}
+        isMandatory={!!currentQuestion.is_mandatory}
         currentIndex={currentNumber - 1}
       />
     </div>

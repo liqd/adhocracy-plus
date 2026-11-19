@@ -28,7 +28,13 @@ module.exports = {
     return React.createElement('div', { 'data-testid': 'confidential-notice' })
   },
   TextareaWithCounter: function (props) {
-    return React.createElement('textarea', { 'data-testid': 'textarea-with-counter', value: props.value, onChange: props.onChange, disabled: props.disabled })
+    return React.createElement('textarea', {
+      'data-testid': 'textarea-with-counter',
+      value: props.value,
+      onChange: props.onChange,
+      disabled: props.disabled,
+      'aria-required': props.required ? 'true' : undefined
+    })
   },
   TermsOfUseCheckbox: function () {
     return React.createElement('div', { 'data-testid': 'terms-of-use-checkbox' })
