@@ -17,7 +17,7 @@ overrides:
   fast-uri: 4.2.3
   js-yaml: 5.5.0
   nanoid: 3.3.18
-  maplibre-gl: 5.24.0
+  maplibre-gl: 5.24.1
   '@maplibre/maplibre-gl-leaflet': 0.1.4
   source-map-js: 1.2.2
   zod: 4.6.7
@@ -35,7 +35,7 @@ importers:
         version: 7.0.1
       '@maplibre/maplibre-gl-leaflet':
         specifier: 0.1.4
-        version: 0.1.4(@types/leaflet@1.9.22)(leaflet@1.9.4)(maplibre-gl@5.24.0)
+        version: 0.1.4(@types/leaflet@1.9.22)(leaflet@1.9.4)(maplibre-gl@5.24.1)
       '@prosopo/procaptcha-wrapper':
         specifier: ^2.6.11
         version: 2.6.103(@polkadot/api@16.5.6(supports-color@8.1.1))(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@8.1.1)(typescript@5.9.3)
@@ -106,8 +106,8 @@ importers:
         specifier: git+https://github.com/liqd/Leaflet.markercluster#liqd2212
         version: https://codeload.github.com/liqd/Leaflet.markercluster/tar.gz/88919e61849389e92559b03380674eca63df193d(leaflet@1.9.4)
       maplibre-gl:
-        specifier: 5.24.0
-        version: 5.24.0
+        specifier: 5.24.1
+        version: 5.24.1
       maplibregl-mapbox-request-transformer:
         specifier: 0.0.2
         version: 0.0.2
@@ -1264,7 +1264,7 @@ packages:
     peerDependencies:
       '@types/leaflet': ^1.9.0
       leaflet: ^1.9.3
-      maplibre-gl: 5.24.0
+      maplibre-gl: 5.24.1
 
   '@maplibre/maplibre-gl-style-spec@24.10.0':
     resolution: {integrity: sha512-lichxSiagMEBBrqHF0trtMQH9RKh+9jUlIJl0qW0QHvt2H/tbvUWdE+ZzI2Jd0/pT7j/iavLonlPu7EQ/ixTOw==}
@@ -4451,8 +4451,8 @@ packages:
   makeerror@1.0.12:
     resolution: {integrity: sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==}
 
-  maplibre-gl@5.24.0:
-    resolution: {integrity: sha512-ALyFxgtd5R+65UqZ/++lOqwWcC0SNho9c27fYSyLmG7AfnAul2o46F05aDJGPbFU57wos9dgcIySHs0Xe6ia3A==}
+  maplibre-gl@5.24.1:
+    resolution: {integrity: sha512-HyiYBwtsbk3L1n1EPLJHWqdoyMiF80n7tEYXFZyu2m1TjvaNx6KMLiFeDdmszt1/mq2zvsR1TJuX/NMu5BonXQ==}
     engines: {node: '>=16.14.0', npm: '>=8.1.0'}
 
   maplibregl-mapbox-request-transformer@0.0.2:
@@ -7297,11 +7297,11 @@ snapshots:
     dependencies:
       kdbush: 4.1.0
 
-  '@maplibre/maplibre-gl-leaflet@0.1.4(@types/leaflet@1.9.22)(leaflet@1.9.4)(maplibre-gl@5.24.0)':
+  '@maplibre/maplibre-gl-leaflet@0.1.4(@types/leaflet@1.9.22)(leaflet@1.9.4)(maplibre-gl@5.24.1)':
     dependencies:
       '@types/leaflet': 1.9.22
       leaflet: 1.9.4
-      maplibre-gl: 5.24.0
+      maplibre-gl: 5.24.1
 
   '@maplibre/maplibre-gl-style-spec@24.10.0':
     dependencies:
@@ -7494,7 +7494,7 @@ snapshots:
       '@polkadot/api-augment': 16.5.6(supports-color@8.1.1)
       '@polkadot/api-base': 16.5.6(supports-color@8.1.1)
       '@polkadot/api-derive': 16.5.6(supports-color@8.1.1)
-      '@polkadot/keyring': 14.0.3(@polkadot/util-crypto@14.0.3(@polkadot/util@14.0.3))(@polkadot/util@14.0.3)
+      '@polkadot/keyring': 14.0.3(@polkadot/util-crypto@14.0.3(@polkadot/util@13.5.7))(@polkadot/util@14.0.3)
       '@polkadot/rpc-augment': 16.5.6(supports-color@8.1.1)
       '@polkadot/rpc-core': 16.5.6(supports-color@8.1.1)
       '@polkadot/rpc-provider': 16.5.6(supports-color@8.1.1)
@@ -7533,10 +7533,10 @@ snapshots:
       '@polkadot/util-crypto': 13.5.9(@polkadot/util@13.5.7)
       tslib: 2.8.1
 
-  '@polkadot/keyring@14.0.3(@polkadot/util-crypto@14.0.3(@polkadot/util@14.0.3))(@polkadot/util@14.0.3)':
+  '@polkadot/keyring@14.0.3(@polkadot/util-crypto@14.0.3(@polkadot/util@13.5.7))(@polkadot/util@14.0.3)':
     dependencies:
       '@polkadot/util': 14.0.3
-      '@polkadot/util-crypto': 14.0.3(@polkadot/util@14.0.3)
+      '@polkadot/util-crypto': 14.0.3(@polkadot/util@13.5.7)
       tslib: 2.8.1
 
   '@polkadot/networks@13.5.9':
@@ -7578,7 +7578,7 @@ snapshots:
 
   '@polkadot/rpc-provider@16.5.6(supports-color@8.1.1)':
     dependencies:
-      '@polkadot/keyring': 14.0.3(@polkadot/util-crypto@14.0.3(@polkadot/util@14.0.3))(@polkadot/util@14.0.3)
+      '@polkadot/keyring': 14.0.3(@polkadot/util-crypto@14.0.3(@polkadot/util@13.5.7))(@polkadot/util@14.0.3)
       '@polkadot/types': 16.5.6
       '@polkadot/types-support': 16.5.6
       '@polkadot/util': 14.0.3
@@ -7662,7 +7662,7 @@ snapshots:
 
   '@polkadot/types@16.5.6':
     dependencies:
-      '@polkadot/keyring': 14.0.3(@polkadot/util-crypto@14.0.3(@polkadot/util@14.0.3))(@polkadot/util@14.0.3)
+      '@polkadot/keyring': 14.0.3(@polkadot/util-crypto@14.0.3(@polkadot/util@13.5.7))(@polkadot/util@14.0.3)
       '@polkadot/types-augment': 16.5.6
       '@polkadot/types-codec': 16.5.6
       '@polkadot/types-create': 16.5.6
@@ -7684,13 +7684,27 @@ snapshots:
       '@scure/base': 1.2.6
       tslib: 2.8.1
 
+  '@polkadot/util-crypto@14.0.3(@polkadot/util@13.5.7)':
+    dependencies:
+      '@noble/curves': 1.9.7
+      '@noble/hashes': 1.8.0
+      '@polkadot/networks': 14.0.3
+      '@polkadot/util': 13.5.7
+      '@polkadot/wasm-crypto': 7.5.4(@polkadot/util@13.5.7)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))
+      '@polkadot/wasm-util': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/x-bigint': 14.0.3
+      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
+      '@scure/base': 1.2.6
+      '@scure/sr25519': 0.2.0
+      tslib: 2.8.1
+
   '@polkadot/util-crypto@14.0.3(@polkadot/util@14.0.3)':
     dependencies:
       '@noble/curves': 1.9.7
       '@noble/hashes': 1.8.0
       '@polkadot/networks': 14.0.3
       '@polkadot/util': 14.0.3
-      '@polkadot/wasm-crypto': 7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3)))
+      '@polkadot/wasm-crypto': 7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))
       '@polkadot/wasm-util': 7.5.4(@polkadot/util@14.0.3)
       '@polkadot/x-bigint': 14.0.3
       '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3))
@@ -7735,11 +7749,18 @@ snapshots:
       '@polkadot/x-randomvalues': 13.5.9(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
       tslib: 2.8.1
 
-  '@polkadot/wasm-bridge@7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3)))':
+  '@polkadot/wasm-bridge@7.5.4(@polkadot/util@13.5.7)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))':
+    dependencies:
+      '@polkadot/util': 13.5.7
+      '@polkadot/wasm-util': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
+      tslib: 2.8.1
+
+  '@polkadot/wasm-bridge@7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))':
     dependencies:
       '@polkadot/util': 14.0.3
       '@polkadot/wasm-util': 7.5.4(@polkadot/util@14.0.3)
-      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3))
+      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
       tslib: 2.8.1
 
   '@polkadot/wasm-crypto-asmjs@7.5.4(@polkadot/util@13.5.7)':
@@ -7762,14 +7783,24 @@ snapshots:
       '@polkadot/x-randomvalues': 13.5.9(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
       tslib: 2.8.1
 
-  '@polkadot/wasm-crypto-init@7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3)))':
+  '@polkadot/wasm-crypto-init@7.5.4(@polkadot/util@13.5.7)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))':
+    dependencies:
+      '@polkadot/util': 13.5.7
+      '@polkadot/wasm-bridge': 7.5.4(@polkadot/util@13.5.7)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))
+      '@polkadot/wasm-crypto-asmjs': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/wasm-crypto-wasm': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/wasm-util': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
+      tslib: 2.8.1
+
+  '@polkadot/wasm-crypto-init@7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))':
     dependencies:
       '@polkadot/util': 14.0.3
-      '@polkadot/wasm-bridge': 7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3)))
+      '@polkadot/wasm-bridge': 7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))
       '@polkadot/wasm-crypto-asmjs': 7.5.4(@polkadot/util@14.0.3)
       '@polkadot/wasm-crypto-wasm': 7.5.4(@polkadot/util@14.0.3)
       '@polkadot/wasm-util': 7.5.4(@polkadot/util@14.0.3)
-      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3))
+      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
       tslib: 2.8.1
 
   '@polkadot/wasm-crypto-wasm@7.5.4(@polkadot/util@13.5.7)':
@@ -7795,15 +7826,26 @@ snapshots:
       '@polkadot/x-randomvalues': 13.5.9(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
       tslib: 2.8.1
 
-  '@polkadot/wasm-crypto@7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3)))':
+  '@polkadot/wasm-crypto@7.5.4(@polkadot/util@13.5.7)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))':
+    dependencies:
+      '@polkadot/util': 13.5.7
+      '@polkadot/wasm-bridge': 7.5.4(@polkadot/util@13.5.7)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))
+      '@polkadot/wasm-crypto-asmjs': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/wasm-crypto-init': 7.5.4(@polkadot/util@13.5.7)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))
+      '@polkadot/wasm-crypto-wasm': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/wasm-util': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
+      tslib: 2.8.1
+
+  '@polkadot/wasm-crypto@7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))':
     dependencies:
       '@polkadot/util': 14.0.3
-      '@polkadot/wasm-bridge': 7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3)))
+      '@polkadot/wasm-bridge': 7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))
       '@polkadot/wasm-crypto-asmjs': 7.5.4(@polkadot/util@14.0.3)
-      '@polkadot/wasm-crypto-init': 7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3)))
+      '@polkadot/wasm-crypto-init': 7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))
       '@polkadot/wasm-crypto-wasm': 7.5.4(@polkadot/util@14.0.3)
       '@polkadot/wasm-util': 7.5.4(@polkadot/util@14.0.3)
-      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3))
+      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
       tslib: 2.8.1
 
   '@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)':
@@ -7861,6 +7903,13 @@ snapshots:
       '@polkadot/util': 13.5.7
       '@polkadot/wasm-util': 7.5.4(@polkadot/util@13.5.7)
       '@polkadot/x-global': 13.5.9
+      tslib: 2.8.1
+
+  '@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))':
+    dependencies:
+      '@polkadot/util': 13.5.7
+      '@polkadot/wasm-util': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/x-global': 14.0.3
       tslib: 2.8.1
 
   '@polkadot/x-randomvalues@14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3))':
@@ -12022,7 +12071,7 @@ snapshots:
     dependencies:
       tmpl: 1.0.5
 
-  maplibre-gl@5.24.0:
+  maplibre-gl@5.24.1:
     dependencies:
       '@mapbox/jsonlint-lines-primitives': 2.0.3
       '@mapbox/point-geometry': 1.1.0
