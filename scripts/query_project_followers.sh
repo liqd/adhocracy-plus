@@ -4,7 +4,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 PROJECT_ID="${1:-3}"
 
-"${VIRTUAL_ENV:-.venv}/bin/python" manage.py shell -c "
+"${UV_PROJECT_ENVIRONMENT:-${VIRTUAL_ENV:-.venv}}/bin/python" manage.py shell -c "
 from adhocracy4.follows.models import Follow
 from adhocracy4.projects.models import Project
 from guest_user.functions import get_guest_model, is_guest_user
