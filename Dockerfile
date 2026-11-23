@@ -47,6 +47,8 @@ WORKDIR /app
 COPY --from=ghcr.io/astral-sh/uv:0.13.9 /uv /uvx /bin/
 
 COPY pyproject.toml uv.lock ./
+# Dev group on purpose: this image runs the dev instance and needs the
+# binary psycopg build from the dev group.
 RUN --mount=type=cache,target=/root/.cache/uv uv sync --frozen
 ENV PATH="/app/.venv/bin:$PATH"
 

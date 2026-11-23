@@ -109,6 +109,8 @@ If you still have a `venv/` directory from the previous pip setup, remove it (`r
 the environment now lives in `.venv`.
 
 To add a dependency use `uv add <package>`; it updates `pyproject.toml` and `uv.lock`.
+adhocracy4 follows the commit locked in `uv.lock` and `pnpm-lock.yaml`; `make bump-a4`
+moves both to the latest a4 `main` commit.
 Inside the environment you can also use `uv run python manage.py ...` without activating it.
 ### Check if tests work
 ```

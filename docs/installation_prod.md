@@ -3,7 +3,7 @@
 This guide will focus on Debian/Ubuntu-like systems - however, it works very similar on e.g. Fedora and friends.
 
 ### Package requirements:
- * python3
+ * python3.12
  * [uv](https://docs.astral.sh/uv/getting-started/installation/)
  * gettext
  * git

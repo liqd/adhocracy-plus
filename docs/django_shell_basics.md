@@ -11,7 +11,7 @@ If you are working on a server, which was set up as described in the [installati
 
 `cd ~/adhocracy-plus`
 
-`workon aplus`
+`source .venv/bin/activate`
 
 or in other environments you might need to specify the path to where your python is installed.
 
