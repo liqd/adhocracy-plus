@@ -306,6 +306,45 @@ def test_search_matches_german_plural_query(client):
 
 
 @pytest.mark.django_db
+def test_search_falls_back_to_fuzzy_matching(client):
+    center = _setup_center()
+    category = LearningCategory.objects.create(name="Participants")
+    _add_nugget(center, category, "Set Up Your Profile", "set-up-your-profile")
+    _add_nugget(center, category, "Deleting Profile", "deleting-profile")
+
+    content = _search(client, "Pofrile").content.decode()
+
+    assert "Set Up Your Profile" in content
+    assert "Deleting Profile" in content
+    assert "No exact results for" in content
+    assert "2 results for “Profile”" in content
+
+
+@pytest.mark.django_db
+def test_fuzzy_matching_is_not_used_when_exact_results_exist(client):
+    center = _setup_center()
+    category = LearningCategory.objects.create(name="Participants")
+    _add_nugget(center, category, "Set Up Your Profile", "set-up-your-profile")
+
+    content = _search(client, "Profile").content.decode()
+
+    assert "Set Up Your Profile" in content
+    assert "No exact results for" not in content
+
+
+@pytest.mark.django_db
+def test_fuzzy_matching_does_not_add_fallback_suggestions(client):
+    center = _setup_center()
+    category = LearningCategory.objects.create(name="Participants")
+    _add_nugget(center, category, "Set Up Your Profile", "set-up-your-profile")
+
+    content = _search(client, "qqqq").content.decode()
+
+    assert "No results for" in content
+    assert "Set Up Your Profile" not in content
+
+
+@pytest.mark.django_db
 def test_sidebar_contains_search_form(client):
     _setup_center()
 

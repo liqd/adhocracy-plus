@@ -1,3 +1,4 @@
+import difflib
 import re
 from html import unescape
 
@@ -97,6 +98,12 @@ def matches_text(text, query):
     )
 
 
+def _description_text(description):
+    """Return the visible text of a rich text description."""
+    text = getattr(description, "source", None) or str(description)
+    return unescape(re.sub(r"<[^>]+>", " ", text)).replace("\xa0", " ")
+
+
 def _block_matches(block, query):
     """Return whether a single StreamField block matches ``query``.
 
@@ -115,9 +122,7 @@ def _block_matches(block, query):
         # RichText exposes the raw HTML in ``source``. Replace tags with a
         # space (so words from adjacent blocks do not get glued together) and
         # decode entities before matching the visible text.
-        text = getattr(description, "source", None) or str(description)
-        text = unescape(re.sub(r"<[^>]+>", " ", text)).replace("\xa0", " ")
-        if matches_text(text, query):
+        if matches_text(_description_text(description), query):
             return True
     return False
 
@@ -142,15 +147,101 @@ def search_nuggets(query):
     ]
 
 
-def build_search_summary(query, result_count):
+FUZZY_CUTOFF = 0.75
+FUZZY_MIN_WORD_LENGTH = 4
+
+
+def _nugget_search_tokens(nugget):
+    """Collect the searchable tokens of a single nugget."""
+    tokens = set(WORD_RE.findall(nugget.title.casefold()))
+    for block in nugget.content:
+        if block.block_type != "learning_nugget":
+            continue
+        value = block.value
+        tokens.update(WORD_RE.findall((value.get("title") or "").casefold()))
+        description = value.get("description")
+        if description:
+            tokens.update(WORD_RE.findall(_description_text(description).casefold()))
+    return tokens
+
+
+def correct_search_query(query):
+    """Return a typo-corrected query, or ``None`` if nothing was corrected.
+
+    Only words of a useful length are compared. This is deliberately a plain
+    string-similarity correction, not a semantic search.
+    """
+    query_words = WORD_RE.findall(query)
+    if not query_words:
+        return None
+
+    vocabulary = set()
+    for nugget in live_public_nuggets().filter(category__isnull=False):
+        vocabulary.update(_nugget_search_tokens(nugget))
+    vocabulary = sorted(
+        word for word in vocabulary if len(word) >= FUZZY_MIN_WORD_LENGTH
+    )
+    if not vocabulary:
+        return None
+
+    corrected_words = []
+    changed = False
+    for word in query_words:
+        normalised = word.casefold()
+        if len(normalised) < FUZZY_MIN_WORD_LENGTH:
+            corrected_words.append(word)
+            continue
+
+        matches = difflib.get_close_matches(
+            normalised, vocabulary, n=1, cutoff=FUZZY_CUTOFF
+        )
+        if matches:
+            replacement = matches[0]
+            if word[:1].isupper():
+                replacement = replacement[:1].upper() + replacement[1:]
+            corrected_words.append(replacement)
+            changed = changed or replacement.casefold() != normalised
+        else:
+            corrected_words.append(word)
+
+    if not changed:
+        return None
+    return " ".join(corrected_words)
+
+
+def search_nuggets_with_correction(query):
+    """Search normally and only retry with a typo correction on no results."""
+    results = search_nuggets(query)
+    if results:
+        return results, None
+
+    corrected_query = correct_search_query(query)
+    if corrected_query:
+        results = search_nuggets(corrected_query)
+        if results:
+            return results, corrected_query
+
+    return [], None
+
+
+def build_search_summary(query, result_count, corrected_query=None):
     """Human readable (and translatable) summary of a sidebar search."""
+    result_query = corrected_query or query
     if not result_count:
         return gettext("No results for “%(query)s”.") % {"query": query}
-    return ngettext(
+
+    result_summary = ngettext(
         "%(count)s result for “%(query)s”",
         "%(count)s results for “%(query)s”",
         result_count,
-    ) % {"count": result_count, "query": query}
+    ) % {"count": result_count, "query": result_query}
+
+    if corrected_query:
+        return gettext("No exact results for “%(query)s”. %(results)s") % {
+            "query": query,
+            "results": result_summary,
+        }
+    return result_summary
 
 
 class HtmxTemplateMixin:
@@ -203,10 +294,19 @@ class LearningCenterView(HtmxTemplateMixin, ListView):
         # from being echoed back (and matched) in full.
         query = self.request.GET.get("q", "").strip()[:100]
         context["query"] = query
-        context["nuggets"] = search_nuggets(query) if query else []
-        context["search_summary"] = (
-            build_search_summary(query, len(context["nuggets"])) if query else ""
-        )
+        if query:
+            context["nuggets"], context["search_correction"] = (
+                search_nuggets_with_correction(query)
+            )
+            context["search_summary"] = build_search_summary(
+                query,
+                len(context["nuggets"]),
+                context["search_correction"],
+            )
+        else:
+            context["nuggets"] = []
+            context["search_correction"] = None
+            context["search_summary"] = ""
 
         if query:
             # Search results replace the category index in the partial.
