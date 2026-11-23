@@ -104,9 +104,11 @@ shell, open a new shell or `source "$HOME/.local/bin/env"`. Then:
     make install 
     make fixtures
 
-`make install` syncs into `.venv`, but respects an active `VIRTUAL_ENV` and would
-sync into that environment instead — run `deactivate` first. If `make install`
-already ran with another environment active, deactivate it and run it again.
+`make install` syncs into `.venv`, but respects an active `VIRTUAL_ENV` and an
+explicit `UV_PROJECT_ENVIRONMENT` and would install there instead — run
+`deactivate` and `unset UV_PROJECT_ENVIRONMENT` first, or activate the configured
+environment afterwards. If `make install` already ran with another environment
+active, undo that and run it again.
 
 ### Start virtual environment
 ```
