@@ -1,5 +1,10 @@
 VIRTUAL_ENV ?= .venv
-export UV_PROJECT_ENVIRONMENT ?= $(CURDIR)/$(VIRTUAL_ENV)
+ifeq ($(filter /%,$(VIRTUAL_ENV)),)
+UV_PROJECT_ENVIRONMENT ?= $(CURDIR)/$(VIRTUAL_ENV)
+else
+UV_PROJECT_ENVIRONMENT ?= $(VIRTUAL_ENV)
+endif
+export UV_PROJECT_ENVIRONMENT
 NODE_BIN = node_modules/.bin
 SOURCE_DIRS = adhocracy-plus apps tests
 ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
@@ -60,6 +65,7 @@ help:
 	@echo "  make postgres-stop				-- stops the local postgres cluster"
 	@echo "  make postgres-create			-- create the local postgres cluster (only works on ubuntu 20.04)"
 	@echo "  make local-a4					-- patch to use local a4 (needs to have path ../adhocracy4)"
+	@echo "  make bump-a4					-- update a4 to the latest main commit"
 	@echo "  make celery-worker-start		-- starts the celery worker in the foreground"
 	@echo "  make celery-worker-status		-- lists all registered tasks and active worker nodes"
 	@echo "  make celery-worker-dummy-task	-- calls the dummy task and prints result from redis"
@@ -82,6 +88,7 @@ clean:
 	if [ -f pnpm-lock.yaml ]; then rm pnpm-lock.yaml; fi
 	if [ -d node_modules ]; then rm -rf node_modules; fi
 	if [ -d $(VIRTUAL_ENV) ]; then rm -rf $(VIRTUAL_ENV); fi
+	if [ -d venv ]; then rm -rf venv; fi
 
 .PHONY: fixtures
 fixtures:
@@ -229,7 +236,7 @@ release: export DJANGO_SETTINGS_MODULE ?= adhocracy-plus.config.settings.build
 release:
 	pnpm install --silent
 	pnpm run build:prod
-	uv sync --frozen --no-default-groups --extra prod
+	uv sync --locked --no-default-groups --extra prod
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages -v0
 	$(VIRTUAL_ENV)/bin/python manage.py collectstatic --noinput -v0
 
@@ -255,6 +262,12 @@ postgres-create:
 	sudo -u postgres createuser --createdb --no-createrole --no-superuser django || true
 	sudo -u postgres createdb --owner=django --encoding=UTF8 django || true
 	sudo -u postgres psql -U postgres -d django -c "CREATE EXTENSION postgis;" || true
+
+.PHONY: bump-a4
+bump-a4:
+	uv lock --upgrade-package adhocracy4
+	pnpm update adhocracy4
+	./scripts/a4-check.sh
 
 .PHONY: local-a4
 local-a4:
