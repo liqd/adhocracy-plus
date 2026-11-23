@@ -80,6 +80,9 @@ path+=(
 
 ```
 PYTHON_CONFIGURE_OPTS="--enable-loadable-sqlite-extensions" pyenv install 3.12
+# point uv at the pyenv-built interpreter (also add this to your shell profile),
+# otherwise it may pick another 3.12 without loadable SQLite extensions
+export UV_PYTHON="$(pyenv prefix 3.12)/bin/python3"
 ```
 
 #### Libmagic (macOS)
