@@ -32,7 +32,8 @@ git checkout release
 
 #### Create the Python environment and install dependencies
 ```
-curl -LsSf https://astral.sh/uv/install.sh | sh
+# 0.13.x satisfies the required-version from pyproject.toml (same pin as CI)
+curl -LsSf https://astral.sh/uv/0.13.9/install.sh | sh
 # the installer only updates the shell profile, so load it for this shell too
 source "$HOME/.local/bin/env"
 uv sync --frozen --no-default-groups --extra prod
@@ -299,8 +300,8 @@ rm -rf static/*
 npm install
 npm run build:prod
 # uv must satisfy the required-version in pyproject.toml (>=0.13,<0.14);
-# the installer also updates an existing uv and is safe to re-run
-curl -LsSf https://astral.sh/uv/install.sh | sh
+# the versioned installer also updates an existing uv and is safe to re-run
+curl -LsSf https://astral.sh/uv/0.13.9/install.sh | sh
 source "$HOME/.local/bin/env"
 uv sync --frozen --no-default-groups --extra prod
 source .venv/bin/activate

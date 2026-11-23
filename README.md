@@ -93,7 +93,8 @@ brew install libmagic
 ### Adhocracy-plus software Installation
 
 Dependencies live in `pyproject.toml` and are locked in `uv.lock`. Install uv first
-(e.g. `curl -LsSf https://astral.sh/uv/install.sh | sh`). The installer only
+(`curl -LsSf https://astral.sh/uv/0.13.9/install.sh | sh`; 0.13.x satisfies the
+`required-version` in `pyproject.toml`). The installer only
 updates your shell profile, so if `uv` is not on the `PATH` of the current
 shell, open a new shell or `source "$HOME/.local/bin/env"`. Then:
 
