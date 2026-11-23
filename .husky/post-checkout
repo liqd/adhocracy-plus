@@ -50,6 +50,8 @@ if [ "${WORKTREE_SETUP:-1}" != "0" ] && [ ! -d .venv ] && [ -f Makefile ]; then
   # The detached shell redirects everything itself, so the hook never keeps
   # the caller's stdout/stderr open and git worktree add returns immediately.
   install_script='
+# Never let an activated environment of the main checkout leak into the worktree.
+unset VIRTUAL_ENV UV_PROJECT_ENVIRONMENT
 if make install >>"$WORKTREE_INSTALL_LOG" 2>&1 </dev/null; then
   echo "worktree: make install finished" >>"$WORKTREE_INSTALL_LOG"
 else

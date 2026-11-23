@@ -1,9 +1,9 @@
+# One environment path for everything: uv syncs into it and every target runs
+# the binaries from it. An explicit UV_PROJECT_ENVIRONMENT wins over VIRTUAL_ENV,
+# absolute paths are kept and relative ones resolve against the checkout.
 VIRTUAL_ENV ?= .venv
-ifeq ($(filter /%,$(VIRTUAL_ENV)),)
-UV_PROJECT_ENVIRONMENT ?= $(CURDIR)/$(VIRTUAL_ENV)
-else
-UV_PROJECT_ENVIRONMENT ?= $(VIRTUAL_ENV)
-endif
+ENV_DIR := $(abspath $(if $(UV_PROJECT_ENVIRONMENT),$(UV_PROJECT_ENVIRONMENT),$(VIRTUAL_ENV)))
+UV_PROJECT_ENVIRONMENT := $(ENV_DIR)
 export UV_PROJECT_ENVIRONMENT
 NODE_BIN = node_modules/.bin
 SOURCE_DIRS = adhocracy-plus apps tests
@@ -81,30 +81,30 @@ install:
 	pnpm install
 	pnpm run build
 	uv sync
-	$(VIRTUAL_ENV)/bin/python manage.py migrate
+	$(ENV_DIR)/bin/python manage.py migrate
 
 .PHONY: clean
 clean:
 	if [ -f pnpm-lock.yaml ]; then rm pnpm-lock.yaml; fi
 	if [ -d node_modules ]; then rm -rf node_modules; fi
-	if [ -d $(VIRTUAL_ENV) ]; then rm -rf $(VIRTUAL_ENV); fi
+	if [ -d $(ENV_DIR) ]; then rm -rf $(ENV_DIR); fi
 	if [ -d venv ]; then rm -rf venv; fi
 
 .PHONY: fixtures
 fixtures:
-	$(VIRTUAL_ENV)/bin/python manage.py loaddata adhocracy-plus/fixtures/site-dev.json
-	$(VIRTUAL_ENV)/bin/python manage.py loaddata adhocracy-plus/fixtures/users-dev.json
-	$(VIRTUAL_ENV)/bin/python manage.py loaddata adhocracy-plus/fixtures/orga-dev.json
+	$(ENV_DIR)/bin/python manage.py loaddata adhocracy-plus/fixtures/site-dev.json
+	$(ENV_DIR)/bin/python manage.py loaddata adhocracy-plus/fixtures/users-dev.json
+	$(ENV_DIR)/bin/python manage.py loaddata adhocracy-plus/fixtures/orga-dev.json
 
 .PHONY: server
 server:
-	$(VIRTUAL_ENV)/bin/python manage.py runserver $(DEV_PORT)
+	$(ENV_DIR)/bin/python manage.py runserver $(DEV_PORT)
 
 .PHONY: watch
 watch:
 	trap 'kill %1' KILL; \
 	pnpm run watch & \
-	$(VIRTUAL_ENV)/bin/python manage.py runserver $(DEV_PORT)
+	$(ENV_DIR)/bin/python manage.py runserver $(DEV_PORT)
 
 .PHONY: run
 run:
@@ -117,29 +117,29 @@ run:
 		esac; \
 	fi; \
 	pnpm run build && \
-	$(VIRTUAL_ENV)/bin/granian --interface wsgi --host "$$HOST" --port "$$PORT" adhocracy-plus.config.wsgi:application
+	$(ENV_DIR)/bin/granian --interface wsgi --host "$$HOST" --port "$$PORT" adhocracy-plus.config.wsgi:application
 
 .PHONY: background
 background:
-	$(VIRTUAL_ENV)/bin/python manage.py process_tasks
+	$(ENV_DIR)/bin/python manage.py process_tasks
 
 .PHONY: test
 test:
-	$(VIRTUAL_ENV)/bin/py.test --reuse-db
+	$(ENV_DIR)/bin/py.test --reuse-db
 	pnpm run testNoCov
 
 .PHONY: pytest
 pytest:
-	$(VIRTUAL_ENV)/bin/py.test --reuse-db
+	$(ENV_DIR)/bin/py.test --reuse-db
 
 .PHONY: pytest-lastfailed
 pytest-lastfailed:
-	$(VIRTUAL_ENV)/bin/py.test --reuse-db --last-failed
+	$(ENV_DIR)/bin/py.test --reuse-db --last-failed
 
 .PHONY: pytest-clean
 pytest-clean:
 	if [ -f test_db.sqlite3 ]; then rm test_db.sqlite3; fi
-	$(VIRTUAL_ENV)/bin/py.test
+	$(ENV_DIR)/bin/py.test
 
 .PHONY: jstest
 jstest:
@@ -159,23 +159,23 @@ jstest-updateSnapshots:
 
 .PHONY: e2e
 e2e:
-	DJANGO_ALLOW_ASYNC_UNSAFE=1 $(VIRTUAL_ENV)/bin/py.test -n auto -m e2e --ds=adhocracy-plus.config.settings.e2e
+	DJANGO_ALLOW_ASYNC_UNSAFE=1 $(ENV_DIR)/bin/py.test -n auto -m e2e --ds=adhocracy-plus.config.settings.e2e
 
 .PHONY: e2e-install
 e2e-install:
-	$(VIRTUAL_ENV)/bin/python -m playwright install chromium
+	$(ENV_DIR)/bin/python -m playwright install chromium
 
 .PHONY: coverage
 coverage:
-	$(VIRTUAL_ENV)/bin/py.test --reuse-db --cov --cov-report=html
+	$(ENV_DIR)/bin/py.test --reuse-db --cov --cov-report=html
 
 .PHONY: lint
 lint:
 	EXIT_STATUS=0; \
-	$(VIRTUAL_ENV)/bin/isort --diff -c $(SOURCE_DIRS) ||  EXIT_STATUS=$$?; \
-	$(VIRTUAL_ENV)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings ||  EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/isort --diff -c $(SOURCE_DIRS) ||  EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings ||  EXIT_STATUS=$$?; \
 	pnpm run lint ||  EXIT_STATUS=$$?; \
-	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: lint-quick
@@ -183,7 +183,7 @@ lint-quick:
 	EXIT_STATUS=0; \
 	pnpm run lint-staged ||  EXIT_STATUS=$$?; \
 	scripts/check-ci-playwright-sync.sh ||  EXIT_STATUS=$$?; \
-	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: lint-js-fix
@@ -196,27 +196,27 @@ lint-js-fix:
 .PHONY: lint-html-fix
 lint-html-fix:
 	EXIT_STATUS=0; \
-	$(VIRTUAL_ENV)/bin/djlint $(ARGUMENTS) --reformat --profile=django || EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/djlint $(ARGUMENTS) --reformat --profile=django || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: lint-html-files
 lint-html-files:
 	EXIT_STATUS=0; \
-	$(VIRTUAL_ENV)/bin/djlint $(ARGUMENTS) --profile=django --ignore=H006,H030,H031,H037,T002 || EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/djlint $(ARGUMENTS) --profile=django --ignore=H006,H030,H031,H037,T002 || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: lint-python-files
 lint-python-files:
 	EXIT_STATUS=0; \
-	$(VIRTUAL_ENV)/bin/black $(ARGUMENTS) || EXIT_STATUS=$$?; \
-	$(VIRTUAL_ENV)/bin/isort $(ARGUMENTS) --filter-files || EXIT_STATUS=$$?; \
-	$(VIRTUAL_ENV)/bin/flake8 $(ARGUMENTS) || EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/black $(ARGUMENTS) || EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/isort $(ARGUMENTS) --filter-files || EXIT_STATUS=$$?; \
+	$(ENV_DIR)/bin/flake8 $(ARGUMENTS) || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: po
 po:
-	$(VIRTUAL_ENV)/bin/python manage.py makemessages --all --no-obsolete -d django --extension html,email,py --ignore '$(CURDIR)/node_modules/adhocracy4/adhocracy4/*'
-	$(VIRTUAL_ENV)/bin/python manage.py makemessages --all --no-obsolete -d djangojs --ignore '$(VIRTUAL_ENV)/*' --ignore '$(CURDIR)/node_modules/dsgvo-video-embed/dist/*'
+	$(ENV_DIR)/bin/python manage.py makemessages --all --no-obsolete -d django --extension html,email,py --ignore '$(CURDIR)/node_modules/adhocracy4/adhocracy4/*'
+	$(ENV_DIR)/bin/python manage.py makemessages --all --no-obsolete -d djangojs --ignore '$(ENV_DIR)/*' --ignore '$(CURDIR)/node_modules/dsgvo-video-embed/dist/*'
 # Clean paths
 	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po), \
 		$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' $(file); \
@@ -229,7 +229,7 @@ po:
 		msgen -o $(file) $(file);)
 .PHONY: mo
 mo:
-	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
+	$(ENV_DIR)/bin/python manage.py compilemessages
 
 .PHONY: release
 release: export DJANGO_SETTINGS_MODULE ?= adhocracy-plus.config.settings.build
@@ -237,8 +237,8 @@ release:
 	pnpm install --silent
 	pnpm run build:prod
 	uv sync --locked --no-default-groups --extra prod
-	$(VIRTUAL_ENV)/bin/python manage.py compilemessages -v0
-	$(VIRTUAL_ENV)/bin/python manage.py collectstatic --noinput -v0
+	$(ENV_DIR)/bin/python manage.py compilemessages -v0
+	$(ENV_DIR)/bin/python manage.py collectstatic --noinput -v0
 
 .PHONY: postgres-start
 postgres-start:
@@ -272,26 +272,26 @@ bump-a4:
 .PHONY: local-a4
 local-a4:
 	if [ -d "../adhocracy4" ]; then \
-		uv pip install --python $(VIRTUAL_ENV)/bin/python --reinstall ../adhocracy4; \
-		$(VIRTUAL_ENV)/bin/python manage.py migrate; \
+		uv pip install --python $(ENV_DIR)/bin/python --reinstall ../adhocracy4; \
+		$(ENV_DIR)/bin/python manage.py migrate; \
 		pnpm link ../adhocracy4; \
 	fi
 
 .PHONY: celery-worker-start
 celery-worker-start:
-	$(VIRTUAL_ENV)/bin/celery --app adhocracy-plus worker --loglevel INFO
+	$(ENV_DIR)/bin/celery --app adhocracy-plus worker --loglevel INFO
 
 .PHONY: celery-worker-status
 celery-worker-status:
-	$(VIRTUAL_ENV)/bin/celery --app adhocracy-plus inspect registered
+	$(ENV_DIR)/bin/celery --app adhocracy-plus inspect registered
 
 .PHONY: celery-worker-dummy-task
 celery-worker-dummy-task:
-	$(VIRTUAL_ENV)/bin/celery --app adhocracy-plus call dummy_task | awk '{print "celery-task-meta-"$$0}' | xargs redis-cli get | python3 -m json.tool
+	$(ENV_DIR)/bin/celery --app adhocracy-plus call dummy_task | awk '{print "celery-task-meta-"$$0}' | xargs redis-cli get | python3 -m json.tool
 
 .PHONY: docs
 docs:
-	$(VIRTUAL_ENV)/bin/mkdocs serve
+	$(ENV_DIR)/bin/mkdocs serve
 
 .PHONY: docker-up
 docker-up:
