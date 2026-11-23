@@ -21,8 +21,8 @@ RUN apt update && \
         libmagic-dev && \
     rm -rf /var/lib/apt/lists/*
 
-# Keep uv in the image: main and open PRs still use it. Remove once the
-# setup-uv workflow is on main.
+# Duplicate uv install: the workflow uses pinned astral-sh/setup-uv. Keep
+# this until the setup-uv workflow is on main, then it can be dropped.
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
     cp /root/.local/bin/uv /usr/local/bin/uv
 
