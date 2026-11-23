@@ -8,11 +8,11 @@ set -e
 PYPROJECT_FILE="pyproject.toml"
 WORKFLOW_FILE=".github/workflows/django.yml"
 
-PLAYWRIGHT_VERSION=$(sed -n 's/^[[:space:]]*"playwright==\([^"]*\)",$/\1/p' "$PYPROJECT_FILE" | head -n1)
+PLAYWRIGHT_VERSION=$(sed -n 's/^[[:space:]]*"playwright==\([^"]*\)",\{0,1\}$/\1/p' "$PYPROJECT_FILE")
 IMAGE_TAG=$(grep -E 'container: mcr\.microsoft\.com/playwright/python' "$WORKFLOW_FILE" | sed 's/.*python:v\(.*\)-noble.*/\1/')
 
-if [[ -z "$PLAYWRIGHT_VERSION" ]]; then
-  echo "Could not find a pinned 'playwright==<version>' in $PYPROJECT_FILE." >&2
+if [[ $(printf '%s\n' "$PLAYWRIGHT_VERSION" | grep -c .) -ne 1 ]]; then
+  echo "Could not find exactly one pinned 'playwright==<version>' in $PYPROJECT_FILE." >&2
   exit 1
 fi
 

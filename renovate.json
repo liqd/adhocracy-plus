@@ -35,7 +35,9 @@
     },
     {
       "matchDepTypes": [
-        "dependencies"
+        "dependencies",
+        "project.dependencies",
+        "project.optional-dependencies"
       ],
       "matchUpdateTypes": [
         "minor",
@@ -45,7 +47,8 @@
     },
     {
       "matchDepTypes": [
-        "devDependencies"
+        "devDependencies",
+        "dependency-groups"
       ],
       "matchUpdateTypes": [
         "minor",
