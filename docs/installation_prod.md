@@ -298,7 +298,13 @@ rm -rf static/*
 ```
 npm install
 npm run build:prod
+# installations from the previous pip setup need uv first
+if ! command -v uv >/dev/null 2>&1; then
+  curl -LsSf https://astral.sh/uv/install.sh | sh
+  source "$HOME/.local/bin/env"
+fi
 uv sync --frozen --no-default-groups --extra prod
+source .venv/bin/activate
 export DJANGO_SETTINGS_MODULE=adhocracy-plus.config.settings.build
 python manage.py compilemessages
 python manage.py collectstatic
