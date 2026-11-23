@@ -33,6 +33,8 @@ git checkout release
 #### Create the Python environment and install dependencies
 ```
 curl -LsSf https://astral.sh/uv/install.sh | sh
+# the installer only updates the shell profile, so load it for this shell too
+source "$HOME/.local/bin/env"
 uv sync --frozen --no-default-groups --extra prod
 source .venv/bin/activate
 ```
@@ -235,7 +237,7 @@ You can now continue setting up the website in the `django-admin` configuration 
 ```
 su aplus
 cd ~/adhocracy-plus
-workon aplus
+source .venv/bin/activate
 python manage.py createsuperuser
 ```
 
@@ -276,7 +278,7 @@ cd ~/adhocracy-plus
 ####  Enable virtual environment
 
 ```
-workon aplus
+source .venv/bin/activate
 ```
 
 #### Update the code

@@ -93,7 +93,9 @@ brew install libmagic
 ### Adhocracy-plus software Installation
 
 Dependencies live in `pyproject.toml` and are locked in `uv.lock`. Install uv first
-(e.g. `curl -LsSf https://astral.sh/uv/install.sh | sh`), then:
+(e.g. `curl -LsSf https://astral.sh/uv/install.sh | sh`). The installer only
+updates your shell profile, so if `uv` is not on the `PATH` of the current
+shell, open a new shell or `source "$HOME/.local/bin/env"`. Then:
 
     git clone https://github.com/liqd/adhocracy-plus.git
     cd adhocracy-plus
@@ -105,7 +107,9 @@ Dependencies live in `pyproject.toml` and are locked in `uv.lock`. Install uv fi
 source .venv/bin/activate
 ```
 
-If you still have a `venv/` directory from the previous pip setup, remove it (`rm -rf venv`);
+`make install` syncs into `.venv`, but respects an active `VIRTUAL_ENV`: run
+`deactivate` first if you still have an old environment activated. If you still
+have a `venv/` directory from the previous pip setup, remove it (`rm -rf venv`);
 the environment now lives in `.venv`.
 
 To add a dependency use `uv add <package>`; it updates `pyproject.toml` and `uv.lock`.

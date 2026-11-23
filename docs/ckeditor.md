@@ -29,3 +29,7 @@ source .venv/bin/activate
 # directory
 uv pip install -e ../django-ckeditor-5
 ```
+
+The editable install lives in `.venv`, but `uv run` re-syncs the environment from
+`uv.lock` and would replace it with the pinned wheel. While testing local
+ckeditor changes, use the activated environment or `uv run --no-sync …` instead.
