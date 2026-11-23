@@ -58,7 +58,14 @@ def forwards(apps, schema_editor):
 
 
 def backwards(apps, schema_editor):
-    """Restore the string based permission level when rolling back."""
+    """Restore the string based permission level when rolling back.
+
+    The old field could not represent categories without a level and was
+    limited to 50 characters. Rolling back therefore maps unassigned
+    categories to an empty value and truncates names edited after this
+    migration; both are only relevant for data the old schema could not
+    represent.
+    """
     LearningCategory = apps.get_model("a4_candy_learning_nuggets", "LearningCategory")
     PermissionLevel = apps.get_model("a4_candy_learning_nuggets", "PermissionLevel")
 
@@ -66,6 +73,12 @@ def backwards(apps, schema_editor):
         LearningCategory.objects.filter(permission_level_new=level).update(
             permission_level=REVERSE_LEVELS.get(level.name, level.name[:50])
         )
+
+    # Preserve unassigned categories instead of silently putting them into
+    # the participant group when the old field is restored.
+    LearningCategory.objects.filter(permission_level_new__isnull=True).update(
+        permission_level=""
+    )
 
 
 class Migration(migrations.Migration):

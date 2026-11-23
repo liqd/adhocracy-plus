@@ -138,10 +138,19 @@ def search_nuggets(query):
     """
     if not query:
         return []
+    return _search_nuggets_in(_searchable_nuggets(), query)
 
+
+def _searchable_nuggets():
+    """Return the public, categorized nuggets once for a search request."""
+    return list(live_public_nuggets().filter(category__isnull=False))
+
+
+def _search_nuggets_in(nuggets, query):
+    """Match ``query`` against an already loaded list of nuggets."""
     return [
         nugget
-        for nugget in live_public_nuggets().filter(category__isnull=False)
+        for nugget in nuggets
         if matches_text(nugget.title, query)
         or any(_block_matches(block, query) for block in nugget.content)
     ]
@@ -165,22 +174,25 @@ def _nugget_search_tokens(nugget):
     return tokens
 
 
-def correct_search_query(query):
+def _search_vocabulary(nuggets):
+    """Build the vocabulary used for typo correction from eligible nuggets."""
+    vocabulary = set()
+    for nugget in nuggets:
+        vocabulary.update(_nugget_search_tokens(nugget))
+    return sorted(word for word in vocabulary if len(word) >= FUZZY_MIN_WORD_LENGTH)
+
+
+def correct_search_query(query, nuggets):
     """Return a typo-corrected query, or ``None`` if nothing was corrected.
 
     Only words of a useful length are compared. This is deliberately a plain
     string-similarity correction, not a semantic search.
     """
     query_words = WORD_RE.findall(query)
-    if not query_words:
+    if not any(len(word) >= FUZZY_MIN_WORD_LENGTH for word in query_words):
         return None
 
-    vocabulary = set()
-    for nugget in live_public_nuggets().filter(category__isnull=False):
-        vocabulary.update(_nugget_search_tokens(nugget))
-    vocabulary = sorted(
-        word for word in vocabulary if len(word) >= FUZZY_MIN_WORD_LENGTH
-    )
+    vocabulary = _search_vocabulary(nuggets)
     if not vocabulary:
         return None
 
@@ -211,13 +223,14 @@ def correct_search_query(query):
 
 def search_nuggets_with_correction(query):
     """Search normally and only retry with a typo correction on no results."""
-    results = search_nuggets(query)
+    nuggets = _searchable_nuggets()
+    results = _search_nuggets_in(nuggets, query)
     if results:
         return results, None
 
-    corrected_query = correct_search_query(query)
+    corrected_query = correct_search_query(query, nuggets)
     if corrected_query:
-        results = search_nuggets(corrected_query)
+        results = _search_nuggets_in(nuggets, corrected_query)
         if results:
             return results, corrected_query
 

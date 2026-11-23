@@ -35,7 +35,22 @@ def test_seed_creates_demo_data(homepage):
     assert _demo_pages().filter(live=True).count() == 7
     assert _demo_pages().filter(slug="demo-entwurf-passwort", live=False).exists()
     assert _demo_pages().filter(icon__isnull=False).count() == 8
+    assert (
+        _demo_pages().get(slug="demo-profil-einrichten").icon.title.startswith("[demo]")
+    )
     assert _demo_pages().get(slug="demo-profil-einrichten").read_length == 4
+
+
+@pytest.mark.django_db
+def test_seed_preserves_existing_permission_level_order(homepage):
+    level = PermissionLevel.objects.get(name="Teilnehmer:in")
+    level.order = 99
+    level.save()
+
+    call_command("seed_learning_nuggets", verbosity=0)
+
+    level.refresh_from_db()
+    assert level.order == 99
 
 
 @pytest.mark.django_db

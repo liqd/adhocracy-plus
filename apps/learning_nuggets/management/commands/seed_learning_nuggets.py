@@ -322,7 +322,7 @@ class Command(BaseCommand):
     def _create_categories(self):
         permission_levels = {}
         for data in PERMISSION_LEVELS:
-            level, _ = PermissionLevel.objects.update_or_create(
+            level, _ = PermissionLevel.objects.get_or_create(
                 name=data["name"],
                 defaults={"order": data["order"]},
             )
@@ -348,7 +348,9 @@ class Command(BaseCommand):
             return None
 
         image_model = get_image_model()
-        title = f"Learning nugget icon: {Path(filename).stem.replace('-', ' ')}"
+        # The prefix marks seed-owned images so they are not confused with
+        # editor uploads that happen to use the same file name.
+        title = f"[demo] Learning nugget icon: {Path(filename).stem.replace('-', ' ')}"
         image = image_model.objects.filter(title=title).first()
         if image is not None:
             return image
