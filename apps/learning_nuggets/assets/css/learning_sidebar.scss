@@ -66,7 +66,7 @@
     bottom: 0;
     display: flex;
     flex-direction: column;
-    width: 480px;
+    width: 492px;
     max-width: 100%;
     background-color: $body-bg;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
@@ -86,8 +86,8 @@
 
   .learning-sidebar__close {
     position: absolute;
-    top: 0.6rem;
-    right: 0.6rem;
+    top: 2rem;
+    right: 2rem;
     padding: 0;
     border: none;
     background: transparent;
@@ -99,7 +99,40 @@
   .learning-sidebar__content {
     flex: 1;
     overflow-y: auto;
-    padding: 0 1.5rem;
+    padding: 2.5rem 2rem 0;
+  }
+
+  .learning-sidebar__footer {
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+    padding: 1rem 2rem;
+    border-top: 1px solid $learning-border;
+    background-color: $body-bg;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04), 0 16px 32px -4px rgba(0, 0, 0, 0.08);
+  }
+
+  .learning-sidebar__footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: $primary;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    text-decoration: none;
+
+    i {
+      font-size: 1rem;
+    }
+
+    i:last-child {
+      font-size: 0.75rem;
+    }
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

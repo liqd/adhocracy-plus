@@ -64,5 +64,14 @@
          aria-atomic="true"></div>
 
     <div id="learning-content" class="learning-sidebar__content"></div>
+
+    <div class="learning-sidebar__footer">
+        <a class="learning-sidebar__footer-link"
+           href="{% url 'learning_nuggets:index' %}">
+            <i class="fa-regular fa-circle-question" aria-hidden="true"></i>
+            {% translate 'Visit Full Help Center' %}
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </a>
+    </div>
 </div>
 <script type="text/javascript" src="{% static 'learning_sidebar.js' %}"></script>
