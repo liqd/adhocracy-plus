@@ -100,17 +100,20 @@ shell, open a new shell or `source "$HOME/.local/bin/env"`. Then:
 
     git clone https://github.com/liqd/adhocracy-plus.git
     cd adhocracy-plus
+    deactivate  # only needed if another environment is still active
     make install 
     make fixtures
+
+`make install` syncs into `.venv`, but respects an active `VIRTUAL_ENV` and would
+sync into that environment instead — run `deactivate` first. If `make install`
+already ran with another environment active, deactivate it and run it again.
 
 ### Start virtual environment
 ```
 source .venv/bin/activate
 ```
 
-`make install` syncs into `.venv`, but respects an active `VIRTUAL_ENV`: run
-`deactivate` first if you still have an old environment activated. If you still
-have a `venv/` directory from the previous pip setup, remove it (`rm -rf venv`);
+If you still have a `venv/` directory from the previous pip setup, remove it (`rm -rf venv`);
 the environment now lives in `.venv`.
 
 To add a dependency use `uv add <package>`; it updates `pyproject.toml` and `uv.lock`.

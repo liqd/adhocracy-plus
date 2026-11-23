@@ -276,12 +276,6 @@ su aplus
 cd ~/adhocracy-plus
 ```
 
-####  Enable virtual environment
-
-```
-source .venv/bin/activate
-```
-
 #### Update the code
 
 ```
