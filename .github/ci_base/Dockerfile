@@ -21,10 +21,6 @@ RUN apt update && \
         libmagic-dev && \
     rm -rf /var/lib/apt/lists/*
 
-# Install uv system-wide
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
-    cp /root/.local/bin/uv /usr/local/bin/uv
-
 # Configure PostgreSQL
 RUN service postgresql start && \
     sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';" && \

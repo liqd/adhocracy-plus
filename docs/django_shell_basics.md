@@ -3,7 +3,7 @@
 To start the django shell, first activate your virtual environment, which
 should be installed inside your project folder
 
-`source venv/bin/activate`
+`source .venv/bin/activate`
 
 If you are working on a server, which was set up as described in the [installation docs](https://github.com/liqd/adhocracy-plus/blob/main/docs/installation_prod.md), the virtualenv is started with
 

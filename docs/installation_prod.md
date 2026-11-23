@@ -4,8 +4,7 @@ This guide will focus on Debian/Ubuntu-like systems - however, it works very sim
 
 ### Package requirements:
  * python3
- * python3-pip
- * virtualenvwrapper
+ * [uv](https://docs.astral.sh/uv/getting-started/installation/)
  * gettext
  * git
  * curl
@@ -31,18 +30,17 @@ cd adhocracy-plus
 git checkout release
 ```
 
-#### Create and launch virtual environment
+#### Create the Python environment and install dependencies
 ```
-mkvirtualenv --python=/usr/bin/python3 aplus
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv sync --frozen --no-default-groups --extra prod
+source .venv/bin/activate
 ```
 
-Note: you won't need the `--python` part when using a recent distribution.
-
-#### Install dependencies and build static optimized JS code
+#### Build static optimized JS code
 ```
 npm install
 npm run build:prod
-pip install -r requirements.txt
 export DJANGO_SETTINGS_MODULE=adhocracy-plus.config.settings.build
 python manage.py compilemessages
 python manage.py collectstatic
@@ -137,7 +135,7 @@ After=network.target
 [Service]
 User=aplus
 WorkingDirectory=/home/aplus/adhocracy-plus
-ExecStart=/home/aplus/.virtualenvs/aplus/bin/gunicorn -e DJANGO_SETTINGS_MODULE=adhocracy-plus.config.settings.production --workers 4 --threads 2 -b 127.0.0.1:8000 -n adhocracy-plus adhocracy-plus.config.wsgi
+ExecStart=/home/aplus/adhocracy-plus/.venv/bin/gunicorn -e DJANGO_SETTINGS_MODULE=adhocracy-plus.config.settings.production --workers 4 --threads 2 -b 127.0.0.1:8000 -n adhocracy-plus adhocracy-plus.config.wsgi
 Restart=always
 RestartSec=3
 StandardOutput=append:/var/log/adhocracy-plus/adhocracy-plus.log
@@ -158,7 +156,7 @@ After=network.target
 Type=forking
 User=aplus
 WorkingDirectory=/home/aplus/adhocracy-plus
-ExecStart=/home/aplus/.virtualenvs/aplus/bin/celery --app adhocracy-plus worker
+ExecStart=/home/aplus/adhocracy-plus/.venv/bin/celery --app adhocracy-plus worker
 Restart=always
 RestartSec=3
 StandardOutput=append:/var/log/adhocracy-plus/adhocracy-plus-celery-worker.log
@@ -298,7 +296,7 @@ rm -rf static/*
 ```
 npm install
 npm run build:prod
-pip install --upgrade -r requirements.txt
+uv sync --frozen --no-default-groups --extra prod
 export DJANGO_SETTINGS_MODULE=adhocracy-plus.config.settings.build
 python manage.py compilemessages
 python manage.py collectstatic

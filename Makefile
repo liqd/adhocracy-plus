@@ -1,4 +1,5 @@
-VIRTUAL_ENV ?= venv
+VIRTUAL_ENV ?= .venv
+export UV_PROJECT_ENVIRONMENT ?= $(CURDIR)/$(VIRTUAL_ENV)
 NODE_BIN = node_modules/.bin
 SOURCE_DIRS = adhocracy-plus apps tests
 ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
@@ -24,13 +25,12 @@ all: help
 help:
 	@echo adhocracy+ development tools
 	@echo
-	@echo It will either use an exisiting virtualenv if it was entered
-	@echo before or create a new one in the venv subdirectory.
+	@echo It manages the Python environment with uv in the .venv directory.
 	@echo
 	@echo usage:
 	@echo
 	@echo "  make install					-- install dev setup"
-	@echo "  make clean						-- delete node modules and venv"
+	@echo "  make clean						-- delete node modules and .venv"
 	@echo "  make fixtures					-- load example data"
 	@echo "  make server [port] | [host:port]		-- start a dev server (default port 8004)"
 	@echo "  make watch [port] | [host:port]		-- start a dev server and rebuild js and css files on changes (default port 8004)"
@@ -74,15 +74,14 @@ help:
 install:
 	pnpm install
 	pnpm run build
-	if [ ! -f $(VIRTUAL_ENV)/bin/python3 ]; then python3 -m venv $(VIRTUAL_ENV); fi
-	$(VIRTUAL_ENV)/bin/python -m pip install --upgrade -r requirements/dev.txt
+	uv sync
 	$(VIRTUAL_ENV)/bin/python manage.py migrate
 
 .PHONY: clean
 clean:
 	if [ -f pnpm-lock.yaml ]; then rm pnpm-lock.yaml; fi
 	if [ -d node_modules ]; then rm -rf node_modules; fi
-	if [ -d venv ]; then rm -rf venv; fi
+	if [ -d $(VIRTUAL_ENV) ]; then rm -rf $(VIRTUAL_ENV); fi
 
 .PHONY: fixtures
 fixtures:
@@ -230,7 +229,7 @@ release: export DJANGO_SETTINGS_MODULE ?= adhocracy-plus.config.settings.build
 release:
 	pnpm install --silent
 	pnpm run build:prod
-	$(VIRTUAL_ENV)/bin/python -m pip install -r requirements.txt -q
+	uv sync --frozen --no-default-groups --extra prod
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages -v0
 	$(VIRTUAL_ENV)/bin/python manage.py collectstatic --noinput -v0
 
@@ -260,7 +259,7 @@ postgres-create:
 .PHONY: local-a4
 local-a4:
 	if [ -d "../adhocracy4" ]; then \
-		$(VIRTUAL_ENV)/bin/python -m pip install --upgrade ../adhocracy4; \
+		uv pip install --python $(VIRTUAL_ENV)/bin/python --reinstall ../adhocracy4; \
 		$(VIRTUAL_ENV)/bin/python manage.py migrate; \
 		pnpm link ../adhocracy4; \
 	fi

@@ -40,11 +40,11 @@ for rel in opencode.json db.sqlite3 .env .env.local \
   copy_if_missing "$rel"
 done
 
-# Build an isolated Python environment inside the worktree. The venv is never
+# Build an isolated Python environment inside the worktree. The env is never
 # symlinked or copied: local updates must not leak into the main checkout.
-# 'make install' (pnpm install, webpack build, pip install, migrate) takes
+# 'make install' (pnpm install, webpack build, uv sync, migrate) takes
 # minutes, so it is detached: creating a worktree must not block on it.
-if [ "${WORKTREE_SETUP:-1}" != "0" ] && [ ! -d venv ] && [ -f Makefile ]; then
+if [ "${WORKTREE_SETUP:-1}" != "0" ] && [ ! -d .venv ] && [ -f Makefile ]; then
   WORKTREE_INSTALL_LOG="$(git rev-parse --git-dir)/worktree-install.log"
   export WORKTREE_INSTALL_LOG
   # The detached shell redirects everything itself, so the hook never keeps

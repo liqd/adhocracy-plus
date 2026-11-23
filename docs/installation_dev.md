@@ -3,12 +3,14 @@
 ### Requirements
 
  * nodejs (+ npm)
- * python 3.x (+ venv + pip)
+ * python 3.x and [uv](https://docs.astral.sh/uv/getting-started/installation/)
  * libpq (only if postgres should be used)
  * sqlite3 [with JSON1 enabled](https://code.djangoproject.com/wiki/JSON1Extension)
  * redis (in production, not needed for development)
 
 ### Installation
+
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then:
 
     git clone https://github.com/liqd/adhocracy-plus.git
     cd adhocracy-plus
@@ -17,7 +19,7 @@
 
 ### Start virtual environment
 
-    source venv/bin/activate
+    source .venv/bin/activate
 
 ### Check if tests work
 
