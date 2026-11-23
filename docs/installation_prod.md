@@ -326,13 +326,13 @@ python manage.py runserver
 #### Point the services at the new environment
 
 Installations from the previous pip setup still start from the old environment
-(`~/.virtualenvs/aplus/bin` with virtualenvwrapper, or `venv/bin`). Update the
-`ExecStart` lines of both unit files (`adhocracy-plus.service` and
-`adhocracy-plus-celery-worker.service`) to
+(`~/.virtualenvs/aplus/bin` with virtualenvwrapper, or `venv/bin`). As `root` or
+using `sudo`, update the `ExecStart` lines of both unit files
+(`adhocracy-plus.service` and `adhocracy-plus-celery-worker.service`) to
 `/home/aplus/adhocracy-plus/.venv/bin/…`, then reload the units:
 
 ```
-systemctl daemon-reload
+sudo systemctl daemon-reload
 ```
 
 #### Restart server (as `root` or using `sudo`)
