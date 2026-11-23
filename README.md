@@ -96,20 +96,20 @@ Dependencies live in `pyproject.toml` and are locked in `uv.lock`. Install uv fi
 (`curl -LsSf https://astral.sh/uv/0.13.9/install.sh | sh`; 0.13.x satisfies the
 `required-version` in `pyproject.toml`). The installer only
 updates your shell profile, so if `uv` is not on the `PATH` of the current
-shell, open a new shell or `source "$HOME/.local/bin/env"`. Then:
+shell, open a new shell or `source "$HOME/.local/bin/env"`.
+
+`make install` installs into `.venv` and the rest of this guide assumes that path.
+Unset any inherited override first — `deactivate` if another environment is
+active and `unset UV_PROJECT_ENVIRONMENT` (editing a shell profile does not clear
+a variable that is already exported in the current shell). Then:
 
     git clone https://github.com/liqd/adhocracy-plus.git
     cd adhocracy-plus
-    deactivate  # only needed if another environment is still active
     make install 
     make fixtures
 
-`make install` installs into `.venv`, and the rest of this guide assumes that
-path. If another environment is active or `UV_PROJECT_ENVIRONMENT` is set,
-`uv sync` installs there instead, so run `deactivate` and
-`unset UV_PROJECT_ENVIRONMENT` (or remove both from your shell profile) before
-installing. If `make install` already ran with another environment, undo that and
-run it again.
+If `make install` already ran with another environment, undo that and run it
+again.
 
 ### Start virtual environment
 ```
