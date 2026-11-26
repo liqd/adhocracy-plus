@@ -1,6 +1,11 @@
 {
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    "group:allNonMajor"
+  ],
+  "timezone": "Europe/Berlin",
+  "schedule": [
+    "* 0-5 * * *"
   ],
   "packageRules": [
     {
