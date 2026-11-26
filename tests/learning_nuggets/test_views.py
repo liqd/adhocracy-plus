@@ -156,6 +156,31 @@ def test_index_orders_categories_within_a_permission_level(client):
 
 
 @pytest.mark.django_db
+def test_nugget_detail_back_link_points_to_start_screen(client):
+    center = _setup_center()
+    category = LearningCategory.objects.create(name="Participants", slug="participants")
+    _add_nugget(center, category, "Registration", "registration")
+
+    detail_url = reverse(
+        "learning_nuggets:nugget-detail",
+        kwargs={"category_slug": "participants", "nugget_slug": "registration"},
+    )
+    content = client.get(detail_url).content.decode()
+
+    assert 'href="/learning-center/"' in content
+    assert 'class="learning-breadcrumb"' in content
+
+
+@pytest.mark.django_db
+def test_sidebar_footer_links_to_manual(client):
+    _setup_center()
+
+    content = client.get(reverse("learning_nuggets:index")).content.decode()
+
+    assert 'href="/info/manual/"' in content
+
+
+@pytest.mark.django_db
 def test_category_returns_partial_with_htmx(client):
     center = _setup_center()
     category = LearningCategory.objects.create(
