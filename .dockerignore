@@ -14,3 +14,13 @@ htmlcov/
 .idea/
 *.md
 !adhocracy-plus/**/*.md
+
+# Local build output. The assets stage rebuilds these; copying stale local
+# builds into the context only bloats the image and risks outdated assets.
+adhocracy-plus/static/
+/static/
+
+# Not needed to build or run the app.
+docs/
+tests/
+changelog/
