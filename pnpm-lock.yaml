@@ -59,7 +59,7 @@ importers:
         version: 5.1.1
       adhocracy4:
         specifier: github:liqd/adhocracy4#main
-        version: https://codeload.github.com/liqd/adhocracy4/tar.gz/ecd333fa624a05615f4a5b5be9289c2298655224(@types/react@18.3.31)(supports-color@8.1.1)
+        version: https://codeload.github.com/liqd/adhocracy4/tar.gz/ecd333fa624a05615f4a5b5be9289c2298655224(@types/react@18.3.32)(supports-color@8.1.1)
       autoprefixer:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.5.26)
@@ -134,7 +134,7 @@ importers:
         version: 4.2.1(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-markdown:
         specifier: 9.0.3
-        version: 9.0.3(@types/react@18.3.31)(react@18.3.1)(supports-color@8.1.1)
+        version: 9.0.3(@types/react@18.3.32)(react@18.3.1)(supports-color@8.1.1)
       react-slick:
         specifier: 0.30.3
         version: 0.30.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -192,7 +192,7 @@ importers:
         version: 6.6.3
       '@testing-library/react':
         specifier: 16.1.0
-        version: 16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@18.3.7(@types/react@18.3.32))(@types/react@18.3.32)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/jest':
         specifier: ^30.0.0
         version: 30.0.0
@@ -207,10 +207,10 @@ importers:
         version: 1.9.23
       '@types/react':
         specifier: ^18.3.31
-        version: 18.3.31
+        version: 18.3.32
       '@types/react-dom':
         specifier: ^18.3.7
-        version: 18.3.7(@types/react@18.3.31)
+        version: 18.3.7(@types/react@18.3.32)
       '@types/react-flip-move':
         specifier: ^2.9.12
         version: 2.9.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2200,8 +2200,8 @@ packages:
   '@types/react-slick@0.23.13':
     resolution: {integrity: sha512-bNZfDhe/L8t5OQzIyhrRhBr/61pfBcWaYJoq6UDqFtv5LMwfg4NsVDD2J8N01JqdAdxLjOt66OZEp6PX+dGs/A==}
 
-  '@types/react@18.3.31':
-    resolution: {integrity: sha512-vfEqpXTvwT91yhmwdfouStN2hSKwTvyRs8qpLfADyrq/kxDw0hZM7Wk9Ug1FELj8hIby+S/+kQCSRFF32nv2Qw==}
+  '@types/react@18.3.32':
+    resolution: {integrity: sha512-hKTeN+STHjfr2eS1uLImPsGpmIQD5SD8DUTQ+14zSne5CTwRpYh25ggOKG/pFIs2r0JmNYrSv4ZqIL07ipSvOA==}
 
   '@types/stack-utils@2.0.3':
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
@@ -8112,15 +8112,15 @@ snapshots:
       lodash: 4.18.1
       redent: 3.0.0
 
-  '@testing-library/react@16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@testing-library/react@16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@18.3.7(@types/react@18.3.32))(@types/react@18.3.32)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.29.15
       '@testing-library/dom': 10.4.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     optionalDependencies:
-      '@types/react': 18.3.31
-      '@types/react-dom': 18.3.7(@types/react@18.3.31)
+      '@types/react': 18.3.32
+      '@types/react-dom': 18.3.7(@types/react@18.3.32)
 
   '@tootallnate/once@2.0.1': {}
 
@@ -9359,9 +9359,9 @@ snapshots:
 
   '@types/prop-types@15.7.15': {}
 
-  '@types/react-dom@18.3.7(@types/react@18.3.31)':
+  '@types/react-dom@18.3.7(@types/react@18.3.32)':
     dependencies:
-      '@types/react': 18.3.31
+      '@types/react': 18.3.32
 
   '@types/react-flip-move@2.9.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -9372,9 +9372,9 @@ snapshots:
 
   '@types/react-slick@0.23.13':
     dependencies:
-      '@types/react': 18.3.31
+      '@types/react': 18.3.32
 
-  '@types/react@18.3.31':
+  '@types/react@18.3.32':
     dependencies:
       '@types/prop-types': 15.7.15
       csstype: 3.2.3
@@ -9806,7 +9806,7 @@ snapshots:
 
   acorn@8.18.0: {}
 
-  adhocracy4@https://codeload.github.com/liqd/adhocracy4/tar.gz/ecd333fa624a05615f4a5b5be9289c2298655224(@types/react@18.3.31)(supports-color@8.1.1):
+  adhocracy4@https://codeload.github.com/liqd/adhocracy4/tar.gz/ecd333fa624a05615f4a5b5be9289c2298655224(@types/react@18.3.32)(supports-color@8.1.1):
     dependencies:
       '@popperjs/core': 2.11.8
       '@turf/turf': 7.3.4
@@ -9828,7 +9828,7 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       react-flip-move: 3.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-leaflet: 4.2.1(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-markdown: 9.0.3(@types/react@18.3.31)(react@18.3.1)(supports-color@8.1.1)
+      react-markdown: 9.0.3(@types/react@18.3.32)(react@18.3.1)(supports-color@8.1.1)
       react-slick: 0.30.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       shpjs: 6.1.0
     transitivePeerDependencies:
@@ -12803,10 +12803,10 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  react-markdown@9.0.3(@types/react@18.3.31)(react@18.3.1)(supports-color@8.1.1):
+  react-markdown@9.0.3(@types/react@18.3.32)(react@18.3.1)(supports-color@8.1.1):
     dependencies:
       '@types/hast': 3.0.5
-      '@types/react': 18.3.31
+      '@types/react': 18.3.32
       devlop: 1.1.0
       hast-util-to-jsx-runtime: 2.3.6(supports-color@8.1.1)
       html-url-attributes: 3.0.1
