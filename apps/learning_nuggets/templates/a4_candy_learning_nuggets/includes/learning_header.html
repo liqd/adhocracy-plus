@@ -2,13 +2,15 @@
 {% translate 'Learning Center' as learning_center_title %}
 <div class="learning-header">
     <div class="learning-header__top">
-        <i class="fa fa-question-circle" aria-hidden="true"></i>
+        {% if not is_sidebar %}
+            <i class="fa fa-question-circle" aria-hidden="true"></i>
+        {% endif %}
         {% if is_sidebar %}
-            <h2 class="learning-header__title learning-content__title learning-content__title--md">
+            <h2 class="learning-header__title learning-content__title learning-content__title--xl">
                 {{ learning_center_title }}
             </h2>
         {% else %}
-            <h1 class="learning-header__title learning-content__title learning-content__title--md">
+            <h1 class="learning-header__title learning-content__title learning-content__title--xl">
                 {{ learning_center_title }}
             </h1>
         {% endif %}

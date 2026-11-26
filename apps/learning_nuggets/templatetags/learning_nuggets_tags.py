@@ -15,11 +15,6 @@ def get_first_nugget_image(nugget, rendition_spec):
     return None
 
 
-@register.simple_tag
-def get_permission_display(value):
-    return value[0].upper() + value[1:] if value else value
-
-
 @register.filter(name="filter_by_block_type")
 def filter_by_block_type(blocks, block_type):
     """Filters StreamField blocks by their block_type."""

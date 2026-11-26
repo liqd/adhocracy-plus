@@ -21,6 +21,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Comment section: compact layout with connected replies
 - Header: help button opens the Learning Center sidebar; the header is sticky and hides when scrolling down
+- Learning Nuggets: start screen groups categories by editable permission levels and lists nuggets in collapsible categories; nuggets gained PNG icons and reading time `[breaking change]`
 
 ### Fixed
 

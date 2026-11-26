@@ -1,47 +1,60 @@
+from pathlib import Path
+
+from django.contrib.staticfiles import finders
+from django.core.files import File
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
+from wagtail.images import get_image_model
 from wagtail.models import Page
 
 from apps.learning_nuggets.models import LearningCategory
 from apps.learning_nuggets.models import LearningCenterPage
 from apps.learning_nuggets.models import LearningNuggetPage
+from apps.learning_nuggets.models import PermissionLevel
 
 DEMO_SLUG_PREFIX = "demo-"
+ICON_DIR = "learning_nuggets/icons"
+
+PERMISSION_LEVELS = [
+    {"name": "Teilnehmer:in", "order": 10},
+    {"name": "Initiator:in", "order": 20},
+    {"name": "Moderator:in", "order": 30},
+]
 
 CATEGORIES = [
     {
         "slug": "demo-erste-schritte",
         "name": "Erste Schritte",
         "description": "Grundlagen für neue Nutzer:innen.",
-        "permission_level": "teilnehmer:in",
+        "permission_level": "Teilnehmer:in",
         "order": 10,
     },
     {
         "slug": "demo-profil",
         "name": "Profil & Konto",
         "description": "Profil, Passwort und Anmeldung.",
-        "permission_level": "teilnehmer:in",
+        "permission_level": "Teilnehmer:in",
         "order": 20,
     },
     {
         "slug": "demo-beteiligung",
         "name": "Beteiligung",
         "description": "Ideen, Kommentare und Abstimmungen.",
-        "permission_level": "teilnehmer:in",
+        "permission_level": "Teilnehmer:in",
         "order": 30,
     },
     {
         "slug": "demo-projekte",
         "name": "Projekte anlegen",
         "description": "Projekte erstellen und verwalten.",
-        "permission_level": "initiator:in",
+        "permission_level": "Initiator:in",
         "order": 40,
     },
     {
         "slug": "demo-moderation",
         "name": "Moderation",
         "description": "Inhalte prüfen und moderieren.",
-        "permission_level": "moderator:in",
+        "permission_level": "Moderator:in",
         "order": 50,
     },
 ]
@@ -52,6 +65,8 @@ NUGGETS = [
         "title": "Profil einrichten",
         "category": "demo-erste-schritte",
         "order": 10,
+        "read_length": 4,
+        "icon": "user-gear.png",
         "blocks": [
             {
                 "title": "Profil anlegen",
@@ -74,6 +89,8 @@ NUGGETS = [
         "title": "Konto verwalten",
         "category": "demo-profil",
         "order": 20,
+        "read_length": 3,
+        "icon": "gear.png",
         "blocks": [
             {
                 "title": "Passwort zurücksetzen",
@@ -96,6 +113,8 @@ NUGGETS = [
         "title": "Registrierung und Anmeldung",
         "category": "demo-erste-schritte",
         "order": 30,
+        "read_length": 2,
+        "icon": "right-to-bracket.png",
         "blocks": [
             {
                 "title": "Willkommen bei adhocracy+",
@@ -111,6 +130,8 @@ NUGGETS = [
         "title": "Ideen einreichen",
         "category": "demo-beteiligung",
         "order": 40,
+        "read_length": 3,
+        "icon": "lightbulb.png",
         "blocks": [
             {
                 "title": "Eine Idee erstellen",
@@ -126,6 +147,8 @@ NUGGETS = [
         "title": "Projekt anlegen",
         "category": "demo-projekte",
         "order": 50,
+        "read_length": 5,
+        "icon": "cubes.png",
         "blocks": [
             {
                 "title": "Neues Projekt starten",
@@ -148,6 +171,8 @@ NUGGETS = [
         "title": "Kommentare moderieren",
         "category": "demo-moderation",
         "order": 60,
+        "read_length": 4,
+        "icon": "comment.png",
         "blocks": [
             {
                 "title": "Kommentar ausblenden",
@@ -170,6 +195,8 @@ NUGGETS = [
         "title": "Datenschutz & Sicherheit",
         "category": "demo-profil",
         "order": 70,
+        "read_length": 2,
+        "icon": "shield-halved.png",
         "blocks": [
             {
                 "title": "Daten & Privatsphäre",
@@ -185,6 +212,8 @@ NUGGETS = [
         "title": "Entwurf: Passwort-Reset",
         "category": "demo-profil",
         "order": 80,
+        "read_length": 2,
+        "icon": "lock.png",
         "draft": True,
         "blocks": [
             {
@@ -291,6 +320,14 @@ class Command(BaseCommand):
         return center
 
     def _create_categories(self):
+        permission_levels = {}
+        for data in PERMISSION_LEVELS:
+            level, _ = PermissionLevel.objects.get_or_create(
+                name=data["name"],
+                defaults={"order": data["order"]},
+            )
+            permission_levels[level.name] = level
+
         categories = {}
         for data in CATEGORIES:
             category, _ = LearningCategory.objects.update_or_create(
@@ -298,15 +335,38 @@ class Command(BaseCommand):
                 defaults={
                     "name": data["name"],
                     "description": data["description"],
-                    "permission_level": data["permission_level"],
+                    "permission_level": permission_levels[data["permission_level"]],
                     "order": data["order"],
                 },
             )
             categories[category.slug] = category
         return categories
 
+    def _get_or_create_icon(self, filename):
+        """Import a bundled PNG into Wagtail images and return it."""
+        if not filename:
+            return None
+
+        image_model = get_image_model()
+        # The prefix marks seed-owned images so they are not confused with
+        # editor uploads that happen to use the same file name.
+        title = f"[demo] Learning nugget icon: {Path(filename).stem.replace('-', ' ')}"
+        image = image_model.objects.filter(title=title).first()
+        if image is not None:
+            return image
+
+        path = finders.find(f"{ICON_DIR}/{filename}")
+        if path is None:
+            return None
+
+        with open(path, "rb") as source:
+            image = image_model(title=title)
+            image.file.save(filename, File(source), save=True)
+        return image
+
     def _create_nuggets(self, center, categories):
         created = updated = drafts = 0
+        icons = {}
 
         for data in NUGGETS:
             category = categories[data["category"]]
@@ -318,12 +378,19 @@ class Command(BaseCommand):
             )
             is_draft = data.get("draft", False)
 
+            icon_name = data.get("icon")
+            if icon_name not in icons:
+                icons[icon_name] = self._get_or_create_icon(icon_name)
+            icon = icons[icon_name]
+
             if page is None:
                 page = LearningNuggetPage(
                     title=data["title"],
                     slug=data["slug"],
                     category=category,
                     content=content,
+                    icon=icon,
+                    read_length=data.get("read_length"),
                     order=data["order"],
                     live=not is_draft,
                 )
@@ -333,6 +400,8 @@ class Command(BaseCommand):
                 page.title = data["title"]
                 page.category = category
                 page.content = content
+                page.icon = icon
+                page.read_length = data.get("read_length")
                 page.order = data["order"]
                 page.save()
                 updated += 1

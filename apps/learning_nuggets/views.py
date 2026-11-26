@@ -1,3 +1,4 @@
+import difflib
 import re
 from html import unescape
 
@@ -22,7 +23,7 @@ def live_public_nuggets():
     return (
         LearningNuggetPage.objects.live()
         .public()
-        .select_related("category")
+        .select_related("category", "icon")
         .order_by("order")
     )
 
@@ -97,6 +98,12 @@ def matches_text(text, query):
     )
 
 
+def _description_text(description):
+    """Return the visible text of a rich text description."""
+    text = getattr(description, "source", None) or str(description)
+    return unescape(re.sub(r"<[^>]+>", " ", text)).replace("\xa0", " ")
+
+
 def _block_matches(block, query):
     """Return whether a single StreamField block matches ``query``.
 
@@ -115,9 +122,7 @@ def _block_matches(block, query):
         # RichText exposes the raw HTML in ``source``. Replace tags with a
         # space (so words from adjacent blocks do not get glued together) and
         # decode entities before matching the visible text.
-        text = getattr(description, "source", None) or str(description)
-        text = unescape(re.sub(r"<[^>]+>", " ", text)).replace("\xa0", " ")
-        if matches_text(text, query):
+        if matches_text(_description_text(description), query):
             return True
     return False
 
@@ -133,24 +138,123 @@ def search_nuggets(query):
     """
     if not query:
         return []
+    return _search_nuggets_in(_searchable_nuggets(), query)
 
+
+def _searchable_nuggets():
+    """Return the public, categorized nuggets once for a search request."""
+    return list(live_public_nuggets().filter(category__isnull=False))
+
+
+def _search_nuggets_in(nuggets, query):
+    """Match ``query`` against an already loaded list of nuggets."""
     return [
         nugget
-        for nugget in live_public_nuggets().filter(category__isnull=False)
+        for nugget in nuggets
         if matches_text(nugget.title, query)
         or any(_block_matches(block, query) for block in nugget.content)
     ]
 
 
-def build_search_summary(query, result_count):
+FUZZY_CUTOFF = 0.75
+FUZZY_MIN_WORD_LENGTH = 4
+
+
+def _nugget_search_tokens(nugget):
+    """Collect the searchable tokens of a single nugget."""
+    tokens = set(WORD_RE.findall(nugget.title.casefold()))
+    for block in nugget.content:
+        if block.block_type != "learning_nugget":
+            continue
+        value = block.value
+        tokens.update(WORD_RE.findall((value.get("title") or "").casefold()))
+        description = value.get("description")
+        if description:
+            tokens.update(WORD_RE.findall(_description_text(description).casefold()))
+    return tokens
+
+
+def _search_vocabulary(nuggets):
+    """Build the vocabulary used for typo correction from eligible nuggets."""
+    vocabulary = set()
+    for nugget in nuggets:
+        vocabulary.update(_nugget_search_tokens(nugget))
+    return sorted(word for word in vocabulary if len(word) >= FUZZY_MIN_WORD_LENGTH)
+
+
+def correct_search_query(query, nuggets):
+    """Return a typo-corrected query, or ``None`` if nothing was corrected.
+
+    Only words of a useful length are compared. This is deliberately a plain
+    string-similarity correction, not a semantic search.
+    """
+    query_words = WORD_RE.findall(query)
+    if not any(len(word) >= FUZZY_MIN_WORD_LENGTH for word in query_words):
+        return None
+
+    vocabulary = _search_vocabulary(nuggets)
+    if not vocabulary:
+        return None
+
+    corrected_words = []
+    changed = False
+    for word in query_words:
+        normalised = word.casefold()
+        if len(normalised) < FUZZY_MIN_WORD_LENGTH:
+            corrected_words.append(word)
+            continue
+
+        matches = difflib.get_close_matches(
+            normalised, vocabulary, n=1, cutoff=FUZZY_CUTOFF
+        )
+        if matches:
+            replacement = matches[0]
+            if word[:1].isupper():
+                replacement = replacement[:1].upper() + replacement[1:]
+            corrected_words.append(replacement)
+            changed = changed or replacement.casefold() != normalised
+        else:
+            corrected_words.append(word)
+
+    if not changed:
+        return None
+    return " ".join(corrected_words)
+
+
+def search_nuggets_with_correction(query):
+    """Search normally and only retry with a typo correction on no results."""
+    nuggets = _searchable_nuggets()
+    results = _search_nuggets_in(nuggets, query)
+    if results:
+        return results, None
+
+    corrected_query = correct_search_query(query, nuggets)
+    if corrected_query:
+        results = _search_nuggets_in(nuggets, corrected_query)
+        if results:
+            return results, corrected_query
+
+    return [], None
+
+
+def build_search_summary(query, result_count, corrected_query=None):
     """Human readable (and translatable) summary of a sidebar search."""
+    result_query = corrected_query or query
     if not result_count:
         return gettext("No results for “%(query)s”.") % {"query": query}
-    return ngettext(
+
+    result_summary = ngettext(
         "%(count)s result for “%(query)s”",
         "%(count)s results for “%(query)s”",
         result_count,
-    ) % {"count": result_count, "query": query}
+    ) % {"count": result_count, "query": result_query}
+
+    if corrected_query:
+        return gettext("No exact results for “%(query)s”. %(results)s") % {
+            "query": query,
+            "results": result_summary,
+        }
+    return result_summary
 
 
 class HtmxTemplateMixin:
@@ -183,10 +287,13 @@ class LearningCenterView(HtmxTemplateMixin, ListView):
     context_object_name = "grouped_categories"
     model = LearningCategory
 
-    PERMISSION_ORDER = ["teilnehmer:in", "initiator:in", "moderator:in"]
-
     def get_queryset(self):
-        return super().get_queryset().order_by("order")
+        return (
+            super()
+            .get_queryset()
+            .select_related("permission_level")
+            .order_by("order", "name")
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -200,10 +307,19 @@ class LearningCenterView(HtmxTemplateMixin, ListView):
         # from being echoed back (and matched) in full.
         query = self.request.GET.get("q", "").strip()[:100]
         context["query"] = query
-        context["nuggets"] = search_nuggets(query) if query else []
-        context["search_summary"] = (
-            build_search_summary(query, len(context["nuggets"])) if query else ""
-        )
+        if query:
+            context["nuggets"], context["search_correction"] = (
+                search_nuggets_with_correction(query)
+            )
+            context["search_summary"] = build_search_summary(
+                query,
+                len(context["nuggets"]),
+                context["search_correction"],
+            )
+        else:
+            context["nuggets"] = []
+            context["search_correction"] = None
+            context["search_summary"] = ""
 
         if query:
             # Search results replace the category index in the partial.
@@ -211,21 +327,36 @@ class LearningCenterView(HtmxTemplateMixin, ListView):
 
         categories = list(context.get("grouped_categories", []))
 
+        # One query for all visible nuggets keeps the per-category lists free
+        # of N+1 queries.
+        nuggets_by_category = {}
+        for nugget in live_public_nuggets().filter(category__isnull=False):
+            nuggets_by_category.setdefault(nugget.category_id, []).append(nugget)
+
         grouped = {}
         for category in categories:
-            grouped.setdefault(category.permission_level, []).append(category)
+            level = category.permission_level
+            key = level.pk if level else None
+            group = grouped.setdefault(
+                key, {"permission_level": level, "categories": []}
+            )
+            group["categories"].append(
+                {
+                    "category": category,
+                    "nuggets": nuggets_by_category.get(category.pk, []),
+                }
+            )
 
-        # Show the known permission levels first, but never drop categories that
-        # store an unexpected level (e.g. legacy values that were never migrated).
-        ordered_levels = [level for level in self.PERMISSION_ORDER if level in grouped]
-        ordered_levels += [
-            level for level in grouped if level not in self.PERMISSION_ORDER
-        ]
-
-        context["grouped_categories"] = [
-            {"permission_level": level, "categories": grouped[level]}
-            for level in ordered_levels
-        ]
+        # Order by the editable permission level order; categories without a
+        # permission level are always shown last so they are never dropped.
+        context["grouped_categories"] = sorted(
+            grouped.values(),
+            key=lambda group: (
+                group["permission_level"] is None,
+                group["permission_level"].order if group["permission_level"] else 0,
+                group["permission_level"].name if group["permission_level"] else "",
+            ),
+        )
 
         return context
 

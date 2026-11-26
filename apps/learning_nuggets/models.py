@@ -1,8 +1,10 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField
+from wagtail.images import get_image_model_string
 from wagtail.models import Orderable
 from wagtail.models import Page
 from wagtail.search import index
@@ -12,18 +14,37 @@ from .blocks import LearningContentBlock
 
 
 @register_snippet
+class PermissionLevel(models.Model):
+    """Editable permission level that groups learning categories."""
+
+    name = models.CharField(max_length=60, unique=True)
+    order = models.IntegerField(default=0)
+
+    panels = [
+        FieldPanel("name"),
+        FieldPanel("order"),
+    ]
+
+    class Meta:
+        ordering = ["order", "name"]
+        verbose_name = "Permission Level"
+        verbose_name_plural = "Permission Levels"
+
+    def __str__(self):
+        return self.name
+
+
+@register_snippet
 class LearningCategory(models.Model):
     name = models.CharField(max_length=60)
     description = models.CharField(max_length=255, blank=True)
     slug = models.SlugField(unique=True, blank=True)
-    permission_level = models.CharField(
-        max_length=50,
-        choices=[
-            ("teilnehmer:in", "Teilnehmer:in"),
-            ("initiator:in", "Initiator:in"),
-            ("moderator:in", "Moderator:in"),
-        ],
-        default="teilnehmer:in",
+    permission_level = models.ForeignKey(
+        PermissionLevel,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        related_name="categories",
     )
     order = models.IntegerField(default=0)
 
@@ -61,6 +82,7 @@ class LearningCategory(models.Model):
         return (
             LearningNuggetPage.objects.live()
             .public()
+            .select_related("icon")
             .filter(category=self)
             .order_by("order")
         )
@@ -93,6 +115,21 @@ class LearningNuggetPage(Page, Orderable):
         related_name="nuggets",
     )
 
+    icon = models.ForeignKey(
+        get_image_model_string(),
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="+",
+        help_text=_("Upload a PNG icon for this nugget (recommended size: 24x24px)."),
+    )
+
+    read_length = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        help_text=_("Estimated reading time in minutes."),
+    )
+
     content = StreamField(
         [("learning_nugget", LearningContentBlock())],
         use_json_field=True,
@@ -105,6 +142,8 @@ class LearningNuggetPage(Page, Orderable):
 
     content_panels = Page.content_panels + [
         FieldPanel("category"),
+        FieldPanel("icon"),
+        FieldPanel("read_length"),
         FieldPanel("content"),
         FieldPanel("order"),
     ]

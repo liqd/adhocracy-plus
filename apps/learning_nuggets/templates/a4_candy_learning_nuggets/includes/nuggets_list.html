@@ -2,11 +2,13 @@
 
 <nav class="learning-breadcrumb">
     <a href="{% url 'learning_nuggets:index' %}"
+       {% if is_htmx %}
        hx-get="{% url 'learning_nuggets:index' %}"
        hx-target="#learning-content"
        hx-swap="innerHTML"
        hx-push-url="true"
-       hx-sync="#learning-sidebar:replace">
+       hx-sync="#learning-sidebar:replace"
+       {% endif %}>
         <i class="fas fa-chevron-left learning-breadcrumb__icon"
            aria-hidden="true"></i>{% translate 'Learning Center Home' %}
     </a>
@@ -23,11 +25,13 @@
                 <li class="learning-nugget-item">
                     <a href="{% url 'learning_nuggets:nugget-detail' category_slug=category.slug nugget_slug=nugget.slug %}"
                        class="nugget-link"
+                       {% if is_htmx %}
                        hx-get="{% url 'learning_nuggets:nugget-detail' category_slug=category.slug nugget_slug=nugget.slug %}"
                        hx-target="#learning-content"
                        hx-swap="innerHTML"
                        hx-push-url="true"
-                       hx-sync="#learning-sidebar:replace">
+                       hx-sync="#learning-sidebar:replace"
+                       {% endif %}>
                         
                         {% get_first_nugget_image nugget "fill-420x280" as thumb %}
                         {% if thumb %}
@@ -39,6 +43,11 @@
                         {% endif %}
                         
                         <p class="learning-nugget-item__name">{{ nugget.title }}</p>
+                        {% if nugget.read_length %}
+                            <p class="learning-nugget-item__read-time">
+                                {% blocktranslate with minutes=nugget.read_length %}{{ minutes }} min read{% endblocktranslate %}
+                            </p>
+                        {% endif %}
                     </a>
                 </li>
             {% endfor %}
