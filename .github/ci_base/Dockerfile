@@ -21,7 +21,8 @@ RUN apt update && \
         libmagic-dev && \
     rm -rf /var/lib/apt/lists/*
 
-# Install uv system-wide
+# Duplicate uv install: the workflow uses pinned astral-sh/setup-uv. Keep
+# this until the setup-uv workflow is on main, then it can be dropped.
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
     cp /root/.local/bin/uv /usr/local/bin/uv
 

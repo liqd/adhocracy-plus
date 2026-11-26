@@ -14,7 +14,7 @@ adhocracy+ is designed to make online participation easy and accessible to every
 ### Requirements
 
  * nodejs (+ npm) 
- * python 3.x (+ venv + pip)
+ * python 3.x and [uv](https://docs.astral.sh/uv/getting-started/installation/)
  * libpq (only if postgres should be used)
  * pillow-heif (required for macOS M1 Monterey and newer versions)
  * libpq (only if PostgreSQL is used)
@@ -74,12 +74,15 @@ path+=(
 
 ```
 
-#### Pyenv
+#### Python version
 
-If you are using pyenv, you need to create your venv with the following command:
+`pyproject.toml` requires Python 3.12 and `uv sync` uses the interpreter it finds. With pyenv:
 
 ```
-PYTHON_CONFIGURE_OPTS="--enable-loadable-sqlite-extensions" pyenv install 3.12.9 (with your version)
+PYTHON_CONFIGURE_OPTS="--enable-loadable-sqlite-extensions" pyenv install 3.12
+# use it for this project's uv commands in this shell; do not export it globally,
+# otherwise it may pick another 3.12 without loadable SQLite extensions
+export UV_PYTHON="$(pyenv prefix 3.12)/bin/python3"
 ```
 
 #### Libmagic (macOS)
@@ -92,15 +95,37 @@ brew install libmagic
 
 ### Adhocracy-plus software Installation
 
+Dependencies live in `pyproject.toml` and are locked in `uv.lock`. Install uv first
+(`curl -LsSf https://astral.sh/uv/0.13.9/install.sh | sh`; 0.13.x satisfies the
+`required-version` in `pyproject.toml`). The installer only
+updates your shell profile, so if `uv` is not on the `PATH` of the current
+shell, open a new shell or `source "$HOME/.local/bin/env"`.
+
+`make install` installs into `.venv` and the rest of this guide assumes that path.
+Unset any inherited override first — `deactivate` if another environment is
+active and `unset UV_PROJECT_ENVIRONMENT` (editing a shell profile does not clear
+a variable that is already exported in the current shell). Then:
+
     git clone https://github.com/liqd/adhocracy-plus.git
     cd adhocracy-plus
     make install 
     make fixtures
 
+If `make install` already ran with another environment, undo that and run it
+again.
+
 ### Start virtual environment
 ```
-source venv/bin/activate
+source .venv/bin/activate
 ```
+
+If you still have a `venv/` directory from the previous pip setup, remove it (`rm -rf venv`);
+the environment now lives in `.venv`.
+
+To add a dependency use `uv add <package>`; it updates `pyproject.toml` and `uv.lock`.
+adhocracy4 follows the commit locked in `uv.lock` and `pnpm-lock.yaml`; `make bump-a4`
+moves both to the latest a4 `main` commit.
+Inside the environment you can also use `uv run python manage.py ...` without activating it.
 ### Check if tests work
 ```
 make test
@@ -118,7 +143,7 @@ make e2e
 To run a single e2e test file, use pytest directly (it requires `DJANGO_ALLOW_ASYNC_UNSAFE`):
 
 ```
-DJANGO_ALLOW_ASYNC_UNSAFE=1 venv/bin/py.test -m e2e --ds=adhocracy-plus.config.settings.e2e tests/e2e/test_poll_vote.py
+DJANGO_ALLOW_ASYNC_UNSAFE=1 .venv/bin/py.test -m e2e --ds=adhocracy-plus.config.settings.e2e tests/e2e/test_poll_vote.py
 ```
 
 The e2e suite seeds data through the `seed` fixture (see `tests/e2e/conftest.py`) so the live test server sees it, and covers the React/vanilla widgets: polls, moderation, interactive events, project search, project follow, and documents.

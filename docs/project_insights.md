@@ -133,7 +133,7 @@ Templates: `project_detail_insights.html`, `project_insight_stats.html`.
 `tests/projects/test_insights.py` covers incremental updates (create/delete, soft comment delete, rating value changes, draft modules, cascade deletes with ratings and comments, vote/like deletes, archived proposals, hidden live questions, and unregistered poll voters). Run:
 
 ```bash
-venv/bin/python -m pytest tests/projects/test_insights.py -v
+.venv/bin/python -m pytest tests/projects/test_insights.py -v
 ```
 
 ## Developer Notes

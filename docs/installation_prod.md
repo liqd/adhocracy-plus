@@ -3,9 +3,8 @@
 This guide will focus on Debian/Ubuntu-like systems - however, it works very similar on e.g. Fedora and friends.
 
 ### Package requirements:
- * python3
- * python3-pip
- * virtualenvwrapper
+ * python3.12
+ * [uv](https://docs.astral.sh/uv/getting-started/installation/)
  * gettext
  * git
  * curl
@@ -31,18 +30,20 @@ cd adhocracy-plus
 git checkout release
 ```
 
-#### Create and launch virtual environment
+#### Create the Python environment and install dependencies
 ```
-mkvirtualenv --python=/usr/bin/python3 aplus
+# 0.13.x satisfies the required-version from pyproject.toml (same pin as CI)
+curl -LsSf https://astral.sh/uv/0.13.9/install.sh | sh
+# the installer only updates the shell profile, so load it for this shell too
+source "$HOME/.local/bin/env"
+uv sync --frozen --no-default-groups --extra prod
+source .venv/bin/activate
 ```
 
-Note: you won't need the `--python` part when using a recent distribution.
-
-#### Install dependencies and build static optimized JS code
+#### Build static optimized JS code
 ```
 npm install
 npm run build:prod
-pip install -r requirements.txt
 export DJANGO_SETTINGS_MODULE=adhocracy-plus.config.settings.build
 python manage.py compilemessages
 python manage.py collectstatic
@@ -137,7 +138,7 @@ After=network.target
 [Service]
 User=aplus
 WorkingDirectory=/home/aplus/adhocracy-plus
-ExecStart=/home/aplus/.virtualenvs/aplus/bin/gunicorn -e DJANGO_SETTINGS_MODULE=adhocracy-plus.config.settings.production --workers 4 --threads 2 -b 127.0.0.1:8000 -n adhocracy-plus adhocracy-plus.config.wsgi
+ExecStart=/home/aplus/adhocracy-plus/.venv/bin/gunicorn -e DJANGO_SETTINGS_MODULE=adhocracy-plus.config.settings.production --workers 4 --threads 2 -b 127.0.0.1:8000 -n adhocracy-plus adhocracy-plus.config.wsgi
 Restart=always
 RestartSec=3
 StandardOutput=append:/var/log/adhocracy-plus/adhocracy-plus.log
@@ -158,7 +159,7 @@ After=network.target
 Type=forking
 User=aplus
 WorkingDirectory=/home/aplus/adhocracy-plus
-ExecStart=/home/aplus/.virtualenvs/aplus/bin/celery --app adhocracy-plus worker
+ExecStart=/home/aplus/adhocracy-plus/.venv/bin/celery --app adhocracy-plus worker
 Restart=always
 RestartSec=3
 StandardOutput=append:/var/log/adhocracy-plus/adhocracy-plus-celery-worker.log
@@ -237,7 +238,7 @@ You can now continue setting up the website in the `django-admin` configuration 
 ```
 su aplus
 cd ~/adhocracy-plus
-workon aplus
+source .venv/bin/activate
 python manage.py createsuperuser
 ```
 
@@ -275,12 +276,6 @@ su aplus
 cd ~/adhocracy-plus
 ```
 
-####  Enable virtual environment
-
-```
-workon aplus
-```
-
 #### Update the code
 
 ```
@@ -298,7 +293,12 @@ rm -rf static/*
 ```
 npm install
 npm run build:prod
-pip install --upgrade -r requirements.txt
+# uv must satisfy the required-version in pyproject.toml (>=0.13,<0.14);
+# the versioned installer also updates an existing uv and is safe to re-run
+curl -LsSf https://astral.sh/uv/0.13.9/install.sh | sh
+source "$HOME/.local/bin/env"
+uv sync --frozen --no-default-groups --extra prod
+source .venv/bin/activate
 export DJANGO_SETTINGS_MODULE=adhocracy-plus.config.settings.build
 python manage.py compilemessages
 python manage.py collectstatic
@@ -315,6 +315,18 @@ python manage.py migrate
 ```
 export DJANGO_SETTINGS_MODULE=adhocracy-plus.config.settings.production
 python manage.py runserver
+```
+
+#### Point the services at the new environment
+
+Installations from the previous pip setup still start from the old environment
+(`~/.virtualenvs/aplus/bin` with virtualenvwrapper, or `venv/bin`). As `root` or
+using `sudo`, update the `ExecStart` lines of both unit files
+(`adhocracy-plus.service` and `adhocracy-plus-celery-worker.service`) to
+`/home/aplus/adhocracy-plus/.venv/bin/…`, then reload the units:
+
+```
+sudo systemctl daemon-reload
 ```
 
 #### Restart server (as `root` or using `sudo`)

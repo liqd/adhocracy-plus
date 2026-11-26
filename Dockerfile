@@ -24,7 +24,11 @@ FROM python:3.12-bookworm AS app
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
-    DJANGO_SETTINGS_MODULE=adhocracy-plus.config.settings.docker
+    DJANGO_SETTINGS_MODULE=adhocracy-plus.config.settings.docker \
+    UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy \
+    UV_PYTHON_DOWNLOADS=never \
+    UV_NO_PROGRESS=1
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -40,8 +44,13 @@ RUN apt-get update \
 
 WORKDIR /app
 
-COPY requirements requirements
-RUN pip install --no-cache-dir -r requirements/dev.txt
+COPY --from=ghcr.io/astral-sh/uv:0.13.9 /uv /uvx /bin/
+
+COPY pyproject.toml uv.lock ./
+# Dev group on purpose: this image runs the dev instance and needs the
+# binary psycopg build from the dev group.
+RUN --mount=type=cache,target=/root/.cache/uv uv sync --frozen
+ENV PATH="/app/.venv/bin:$PATH"
 
 COPY . .
 COPY --from=assets /app/adhocracy-plus/static /app/adhocracy-plus/static

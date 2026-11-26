@@ -164,6 +164,6 @@ export default [
   },
 
   {
-    ignores: ['node_modules/', 'venv/', '**/static/'],
+    ignores: ['node_modules/', '.venv/', 'venv/', '**/static/'],
   },
 ]

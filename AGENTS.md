@@ -8,7 +8,7 @@ Applies to all code and config in this repository unless a file or directory exp
 
 ## Python interpreter
 
-- Use the project virtual environment’s Python: **`venv/bin/python`** (relative to the repository root). Do not assume a system-wide `python`/`python3` unless explicitly required; prefer `venv/bin/python` for installs, scripts, and tooling so dependencies match the project.
+- Use the project virtual environment’s Python: **`.venv/bin/python`** (relative to the repository root). Do not assume a system-wide `python`/`python3` unless explicitly required; prefer `.venv/bin/python` for installs, scripts, and tooling so dependencies match the project.
 
 ## Adhocracy4 placement
 

@@ -40,24 +40,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Cache uv packages
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-uv-packages
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.4.0
         with:
-          path: ~/.cache/uv
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/requirements/dev.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          version: '0.13.9'
+          enable-cache: true
+          cache-dependency-glob: uv.lock
 
       - name: Cache testmon data
         id: cache-testmon
         uses: actions/cache@v4
         with:
           path: .testmondata
-          key: ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/requirements/dev.txt', 'adhocracy-plus/config/settings/*.py', 'pytest.ini') }}
+          key: ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('uv.lock', 'adhocracy-plus/config/settings/*.py', 'pytest.ini') }}
           restore-keys: |
             ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-
 
@@ -66,32 +61,33 @@ jobs:
           echo "testmon cache hit: ${{ steps.cache-testmon.outputs.cache-hit }}"
           ls -la .testmondata || true
           ./scripts/a4-check.sh
+          uv lock --check
 
       - name: Install Python Dependencies
         run: |
-          uv pip install -r requirements/dev.txt --system
+          uv sync --frozen
 
       - name: Run Tests
         env:
           PGPASSWORD: postgres
           PGHOSTADDR: 127.0.0.1
         run: |
-          python manage.py collectstatic > /dev/null
-          isort --diff -c adhocracy-plus tests
-          python manage.py makemigrations --dry-run --check --noinput
-          flake8 adhocracy-plus tests --exclude migrations,settings
+          uv run python manage.py collectstatic > /dev/null
+          uv run isort --diff -c adhocracy-plus tests
+          uv run python manage.py makemigrations --dry-run --check --noinput
+          uv run flake8 adhocracy-plus tests --exclude migrations,settings
           
           if [ "${{ github.event_name }}" = "push" ]; then
             # Run all tests and update testmon cache for future PRs
             # Delete .testmondata to force running all tests, but still update cache
             rm -f .testmondata .testmondata-wal .testmondata-shm
-            py.test --ds=adhocracy-plus.config.settings.travis --testmon --cov -n auto
+            uv run py.test --ds=adhocracy-plus.config.settings.travis --testmon --cov -n auto
           elif [ "${{ github.event_name }}" = "pull_request" ]; then
             # Use testmon to run only changed tests
-            py.test --ds=adhocracy-plus.config.settings.travis --testmon --cov -n auto
+            uv run py.test --ds=adhocracy-plus.config.settings.travis --testmon --cov -n auto
           fi
           if [ -f .testmondata ]; then
-            python -c "import sqlite3; c=sqlite3.connect('.testmondata'); c.execute('PRAGMA wal_checkpoint(TRUNCATE)'); c.close()"
+            uv run python -c "import sqlite3; c=sqlite3.connect('.testmondata'); c.execute('PRAGMA wal_checkpoint(TRUNCATE)'); c.close()"
           fi
 
       - name: Coveralls
@@ -103,7 +99,7 @@ jobs:
           git config --global --add safe.directory /__w/adhocracy-plus/adhocracy-plus
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          coveralls
+          uv run coveralls
 
       - name: Install Dependencies
         run: |
@@ -128,7 +124,7 @@ jobs:
   e2e:
     runs-on: ubuntu-24.04
     # The official Playwright Python image bakes in Chromium and its OS deps;
-    # the playwright pin in requirements/dev.txt must match this tag
+    # the playwright pin in pyproject.toml must match this tag
     # (the tag includes the build number, hence the check script ignores it).
     container: mcr.microsoft.com/playwright/python:v1.62.0-noble
     steps:
@@ -137,9 +133,11 @@ jobs:
         run: |
           apt-get update && apt-get install -y gdal-bin libsqlite3-mod-spatialite libmagic1
       - name: Install uv
-        run: |
-          curl -LsSf https://astral.sh/uv/install.sh | sh
-          cp "$HOME/.local/bin/uv" /usr/local/bin/uv
+        uses: astral-sh/setup-uv@v10.4.0
+        with:
+          version: '0.13.9'
+          enable-cache: true
+          cache-dependency-glob: uv.lock
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -160,19 +158,9 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-      - name: Cache uv packages
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-uv-packages
-        with:
-          path: ~/.cache/uv
-          key: ${{ runner.os }}-e2e-${{ env.cache-name }}-${{ hashFiles('**/requirements/dev.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-e2e-${{ env.cache-name }}-
-            ${{ runner.os }}-e2e-
       - name: Install Python Dependencies
         run: |
-          uv pip install -r requirements/dev.txt --system
+          uv sync --frozen
       - name: Install Frontend Dependencies
         run: |
           pnpm install --frozen-lockfile
@@ -183,8 +171,8 @@ jobs:
         env:
           DJANGO_ALLOW_ASYNC_UNSAFE: "1"
         run: |
-          python manage.py collectstatic > /dev/null
-          py.test -m e2e -n auto --ds=adhocracy-plus.config.settings.e2e \
+          uv run python manage.py collectstatic > /dev/null
+          uv run py.test -m e2e -n auto --ds=adhocracy-plus.config.settings.e2e \
             --tracing retain-on-failure --screenshot only-on-failure
       - name: Upload Playwright Artifacts
         if: failure()
