@@ -2,13 +2,11 @@
   "extends": [
     "config:recommended"
   ],
+  "timezone": "Europe/Berlin",
+  "schedule": [
+    "* 0-5 * * *"
+  ],
   "packageRules": [
-    {
-      "groupName": "eslint packages",
-      "matchPackageNames": [
-        "/^eslint/"
-      ]
-    },
     {
       "matchPackageNames": [
         "Django"
@@ -43,7 +41,8 @@
         "minor",
         "patch"
       ],
-      "automerge": true
+      "automerge": true,
+      "groupName": "non-major dependencies"
     },
     {
       "matchDepTypes": [
@@ -54,7 +53,14 @@
         "minor",
         "patch"
       ],
-      "automerge": true
+      "automerge": true,
+      "groupName": "non-major dependencies"
+    },
+    {
+      "groupName": "eslint packages",
+      "matchPackageNames": [
+        "/^eslint/"
+      ]
     }
   ],
   "digest": {
